@@ -1,0 +1,1194 @@
+/* ============================================================
+   BLUE CALISTENICS — Editorial Black Edition
+   Baseado no sistema visual "Estratos Digitais"
+   ============================================================ */
+
+/* ============================================================
+   1. RESET & TOKENS
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root{
+  --black:      #000000;
+  --white:      #ffffff;
+  --grey-800:   #111111;
+  --grey-700:   #1a1a1a;
+  --grey-500:   #888888;
+  --grey-400:   #aaaaaa;
+  --grey-300:   #cccccc;
+  --line:       rgba(255,255,255,.12);
+  --line-soft:  rgba(255,255,255,.06);
+  --line-hard:  rgba(255,255,255,.22);
+
+  --font-display: 'Archivo', 'Arial Black', 'Helvetica Neue', sans-serif;
+  --font-serif:   'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  --pad:  clamp(1.25rem, 4vw, 4rem);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+html{ -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img{ display: block; max-width: 100%; }
+a{ color: inherit; text-decoration: none; }
+button, input, select, textarea{ font: inherit; color: inherit; }
+ul{ list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, h4, p{ margin: 0; }
+::selection{ background: var(--white); color: var(--black); }
+
+::-webkit-scrollbar{ width: 9px; }
+::-webkit-scrollbar-track{ background: #000; }
+::-webkit-scrollbar-thumb{ background: #1f1f1f; }
+::-webkit-scrollbar-thumb:hover{ background: #333; }
+
+[hidden]{ display: none !important; }
+
+/* ============================================================
+   2. TIPOGRAFIA BASE
+   ============================================================ */
+h1, h2, h3, h4{
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: .95;
+  letter-spacing: -.01em;
+  color: var(--white);
+}
+h2{ font-size: clamp(1.5rem, 3.4vw, 2.3rem); }
+h3{ font-size: clamp(1.05rem, 1.8vw, 1.3rem); }
+
+.desc{
+  max-width: 60ch;
+  font-size: .95rem;
+  line-height: 1.7;
+  color: var(--grey-400);
+}
+.sub{
+  margin: 2rem 0 1rem;
+  font-size: .95rem;
+  letter-spacing: .01em;
+}
+.mut{ color: var(--grey-500); }
+.vazio{
+  color: var(--grey-500);
+  font-style: italic;
+  font-size: .9rem;
+}
+
+/* ============================================================
+   3. HEADER (.menu)
+   ============================================================ */
+.menu{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.1rem var(--pad);
+  background: rgba(0,0,0,.75);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+/* Quebra o padding do .wrap em Exercicios.html e Treinar.html */
+.wrap > .menu{
+  margin: calc(clamp(2rem, 5vw, 4rem) * -1) calc(var(--pad) * -1) 2rem;
+  padding: 1.1rem var(--pad);
+}
+
+.menu h1{
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(.85rem, 1.15vw, 1.05rem);
+  letter-spacing: .01em;
+  line-height: 1;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.menu nav ul{
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.6rem);
+}
+
+.menu nav a{
+  position: relative;
+  font-size: .68rem;
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--grey-400);
+  transition: color .3s ease;
+}
+.menu nav a::after{
+  content: '';
+  position: absolute;
+  left: 0; bottom: -.5em;
+  width: 100%; height: 1px;
+  background: var(--white);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .5s var(--ease);
+}
+.menu nav a:hover{ color: var(--white); }
+.menu nav a:hover::after{ transform: scaleX(1); transform-origin: left; }
+.menu nav a[aria-current="page"]{ color: var(--white); }
+.menu nav a[aria-current="page"]::after{ transform: scaleX(1); transform-origin: left; }
+
+/* ============================================================
+   TICKER — Texto rolando em loop infinito
+   ============================================================ */
+.ticker{
+  position: relative;
+  overflow: hidden;
+  padding: .95rem 0;
+  background: var(--black);
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+/* Breakout quando está dentro do .wrap (Exercicios.html e Treinar.html) */
+.wrap > .ticker{
+  margin-left: calc(var(--pad) * -1);
+  margin-right: calc(var(--pad) * -1);
+  margin-bottom: 0;
+}
+
+.ticker__track{
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+
+/* Pausa o scroll ao passar o rato — bom para leitura */
+.ticker:hover .ticker__track{
+  animation-play-state: paused;
+}
+
+.ticker__group{
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  padding-right: 2.4rem;
+  flex-shrink: 0;
+}
+
+.ticker__group span{
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: .72rem;
+  letter-spacing: .22em;
+  color: var(--grey-400);
+  white-space: nowrap;
+}
+
+/* Palavra em destaque (branco puro) */
+.ticker__group span.is-accent{
+  color: var(--white);
+}
+
+/* Separador · */
+.ticker__group .dot{
+  color: var(--white);
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+@keyframes marquee{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .ticker__track{ animation: none; }
+}
+
+/* ============================================================
+   4. WRAP / LAYOUT
+   ============================================================ */
+.wrap{
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) var(--pad) clamp(3rem, 6vw, 5rem);
+}
+
+.card{
+  margin: clamp(2rem, 4vw, 3.5rem) 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  border-top: 1px solid var(--line-soft);
+}
+.wrap > .card:first-of-type{ margin-top: 0; }
+
+.card > h2{
+  display: flex;
+  align-items: baseline;
+  gap: .8rem;
+  margin-bottom: .75rem;
+}
+.card > h2 .num{
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: .85rem;
+  letter-spacing: .05em;
+  color: var(--grey-500);
+  text-transform: none;
+}
+
+/* ============================================================
+   5. BOTÕES
+   ============================================================ */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  padding: .85rem 1.6rem;
+  font-family: var(--font-body);
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: transparent;
+  border: 1px solid var(--line-hard);
+  cursor: pointer;
+  transition: background .35s ease, color .35s ease, border-color .35s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+.btn:hover{ border-color: var(--white); background: rgba(255,255,255,.04); }
+.btn.primary{ background: var(--white); color: var(--black); border-color: var(--white); }
+.btn.primary:hover{ background: transparent; color: var(--white); }
+.btn.danger{ border-color: rgba(255,90,90,.4); color: #ff5a5a; }
+.btn.danger:hover{ border-color: #ff5a5a; background: rgba(255,60,60,.06); }
+.btn.sel{ background: var(--white); color: var(--black); border-color: var(--white); }
+
+.btn-ico{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--grey-400);
+  font-size: .85rem;
+  cursor: pointer;
+  transition: color .3s ease, border-color .3s ease, background .3s ease;
+}
+.btn-ico:hover{ color: var(--white); border-color: var(--white); background: rgba(255,255,255,.05); }
+
+/* ============================================================
+   6. PASSO 1 — ESCOLHA DE MODO
+   ============================================================ */
+.grid-2{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.opcao{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  text-align: left;
+  background: var(--grey-800);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: background .4s var(--ease), border-color .4s var(--ease), transform .4s var(--ease);
+}
+.opcao:hover{ background: var(--grey-700); border-color: var(--line-hard); transform: translateY(-2px); }
+.opcao.sel{ background: var(--white); color: var(--black); border-color: var(--white); }
+.opcao .ico{ font-family: var(--font-serif); font-style: italic; font-size: 1.6rem; line-height: 1; margin-bottom: .5rem; }
+.opcao strong{
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  line-height: 1;
+  letter-spacing: -.01em;
+}
+.opcao small{ font-size: .85rem; line-height: 1.55; color: var(--grey-400); }
+.opcao.sel small{ color: #333; }
+
+/* ============================================================
+   7. FILTROS
+   ============================================================ */
+.filtro-niveis{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  margin: 1.5rem 0;
+}
+
+.filtro{
+  padding: .5rem 1rem;
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: color .3s ease, border-color .3s ease, background .3s ease;
+}
+.filtro:hover{ color: var(--white); }
+.filtro.sel{ color: var(--white); border-color: var(--line-hard); background: rgba(255,255,255,.03); }
+
+/* ============================================================
+   8. TREINOS PRONTOS
+   ============================================================ */
+.lista-prontos{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.treino-pronto{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+  transition: border-color .4s var(--ease), background .4s var(--ease);
+}
+.treino-pronto:hover{ border-color: var(--line-hard); background: var(--grey-700); }
+
+.tp-head{ display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.tp-head h3{ font-size: clamp(1.1rem, 1.8vw, 1.4rem); flex: 1 1 auto; min-width: 0; }
+
+.tag-nivel{
+  display: inline-block;
+  padding: .35rem .7rem;
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid var(--line-hard);
+  white-space: nowrap;
+}
+
+.tp-desc{
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--grey-300);
+}
+.tp-info{ font-size: .75rem; letter-spacing: .05em; color: var(--grey-500); }
+.tp-info b{ color: var(--grey-400); font-weight: 500; }
+
+.tp-exercicios{ display: flex; flex-wrap: wrap; gap: .35rem .85rem; }
+.tp-exercicios li{ position: relative; padding-left: 1rem; font-size: .8rem; color: var(--grey-400); }
+.tp-exercicios li::before{ content: '·'; position: absolute; left: 0; color: var(--grey-500); }
+
+.treino-pronto .tp-acoes{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: auto;
+}
+.treino-pronto .tp-acoes .btn{ align-self: flex-start; margin-top: 0; }
+
+/* ============================================================
+   9. CRIAR TREINO
+   ============================================================ */
+.form-treino{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.campo{ display: flex; flex-direction: column; gap: .4rem; }
+.campo > span{
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+.campo input,
+.campo select{
+  width: 100%;
+  padding: .75rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line-hard);
+  color: var(--white);
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .4s ease;
+}
+.campo input:focus,
+.campo select:focus{ border-bottom-color: var(--white); }
+.campo select{ cursor: pointer; appearance: none; padding-right: 1.5rem; }
+.campo select option{ background: var(--grey-800); color: var(--white); }
+
+.lista-exercicios{ display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+
+.ex{
+  padding: 1.25rem 1.25rem 1.5rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+}
+.ex-top{ display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: .75rem; }
+.ex-nome{
+  flex: 1 1 auto;
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: .95rem;
+  letter-spacing: -.005em;
+  min-width: 0;
+}
+
+.tag{
+  display: inline-block;
+  padding: .25rem .55rem;
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--grey-400);
+  border: 1px solid var(--line);
+}
+.tag-Push  { color: #8fc9ff; border-color: rgba(143,201,255,.4); }
+.tag-Pull  { color: #c9a4ff; border-color: rgba(201,164,255,.4); }
+.tag-Pernas{ color: #ffb28f; border-color: rgba(255,178,143,.4); }
+.tag-Hab   { color: #9cffd5; border-color: rgba(156,255,213,.4); }
+
+.ex-exec{ font-size: .85rem; color: var(--grey-400); margin-bottom: .75rem; }
+.ex-exec b{ color: var(--grey-300); font-weight: 500; }
+
+.ex-det{ font-size: .82rem; color: var(--grey-500); margin-bottom: 1rem; }
+.ex-det summary{
+  cursor: pointer;
+  color: var(--grey-400);
+  font-style: italic;
+  padding: .4rem 0;
+  list-style: none;
+  transition: color .3s ease;
+}
+.ex-det summary:hover{ color: var(--white); }
+.ex-det summary::-webkit-details-marker{ display: none; }
+.ex-det summary::before{ content: '+ '; font-family: var(--font-serif); color: var(--white); }
+.ex-det[open] summary::before{ content: '− '; }
+.ex-det p{
+  padding: .5rem 0 .5rem 1.2rem;
+  border-left: 1px solid var(--line);
+  margin: .35rem 0;
+  line-height: 1.6;
+}
+
+.ex-campos{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-soft);
+}
+.ex-campos label{
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+.ex-campos input{
+  padding: .5rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--white);
+  font-size: .9rem;
+  outline: none;
+  transition: border-color .3s ease;
+}
+.ex-campos input:focus{ border-bottom-color: var(--white); }
+
+.add-row{ display: flex; flex-wrap: wrap; gap: .75rem; align-items: stretch; margin-bottom: 2rem; }
+.add-select{
+  flex: 1 1 240px;
+  min-width: 0;
+  padding: .85rem 2.5rem .85rem 1rem;
+  background: var(--grey-800);
+  color: var(--white);
+  border: 1px solid var(--line);
+  font-size: .85rem;
+  cursor: pointer;
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--grey-500) 50%),
+    linear-gradient(135deg, var(--grey-500) 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+.add-select:focus{ outline: none; border-color: var(--white); }
+.add-select option, .add-select optgroup{ background: var(--grey-800); color: var(--white); }
+
+.acoes-criar{ display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2rem; }
+
+.lista-meus-treinos{ display: flex; flex-direction: column; gap: .75rem; }
+
+.meu-treino{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+}
+.meu-treino b{
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: .95rem;
+  letter-spacing: -.005em;
+}
+.meu-treino span{ font-size: .78rem; color: var(--grey-500); }
+.meu-treino .btn{ margin-left: auto; }
+.meu-treino .btn + .btn{ margin-left: 0; }
+.meu-treino .btn-ico{ flex: 0 0 auto; }
+
+.dias-agendamento{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: .55rem;
+  margin: 1.5rem 0;
+}
+.dia-agendamento{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: .2rem .6rem;
+  padding: .8rem;
+  border: 1px solid var(--line-soft);
+  background: var(--grey-800);
+  cursor: pointer;
+}
+.dia-agendamento:has(input:checked){ border-color: var(--line-hard); background: var(--grey-700); }
+.dia-agendamento input{ accent-color: var(--white); }
+.dia-agendamento span{ font-size: .78rem; font-weight: 500; }
+.dia-agendamento small{ grid-column: 2; color: var(--grey-500); font-size: .65rem; }
+
+/* ============================================================
+   10. AGENDA
+   ============================================================ */
+.agenda-top{ display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; margin: 1.5rem 0 2rem; }
+.agenda-top .campo{ flex: 1 1 140px; }
+
+.vista-toggle{ display: flex; gap: .35rem; margin-left: auto; }
+
+.grade-semanal{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .75rem;
+  margin: 1.5rem 0;
+}
+
+.dia-agenda{
+  padding: 1rem 1.1rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+  transition: border-color .3s ease;
+}
+.dia-agenda:hover{ border-color: var(--line-hard); }
+
+.dia-agenda-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .75rem;
+}
+.dia-agenda-head b{
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: .85rem;
+  letter-spacing: .01em;
+}
+
+.slot-treino{
+  font-size: .82rem;
+  padding: .65rem .85rem;
+  background: var(--black);
+  border: 1px dashed var(--line);
+  color: var(--grey-500);
+  text-align: center;
+  transition: color .3s ease, border-color .3s ease;
+}
+.slot-treino.treinado{
+  color: var(--white);
+  border-style: solid;
+  border-color: var(--line-hard);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .9rem;
+}
+
+.hint{
+  margin: 1.5rem 0;
+  font-size: .78rem;
+  line-height: 1.7;
+  color: var(--grey-500);
+  padding-left: 1rem;
+  border-left: 1px solid var(--line);
+}
+.hint b{ color: var(--grey-300); font-weight: 500; }
+
+/* ============================================================
+   11. CALENDÁRIO MENSAL
+   ============================================================ */
+.calendario{ margin: 1.5rem 0; }
+
+.cal-semana{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: .35rem;
+  margin-bottom: .35rem;
+}
+.cal-semana span{
+  padding: .5rem .25rem;
+  text-align: center;
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+
+.cal-dias{ display: grid; grid-template-columns: repeat(7, 1fr); gap: .35rem; }
+
+.cal-dia{
+  position: relative;
+  min-height: 74px;
+  padding: .5rem .55rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+  font-size: .75rem;
+  transition: border-color .3s ease;
+}
+.cal-dia:hover{ border-color: var(--line-hard); }
+.cal-dia.vazio{ background: transparent; border-color: transparent; }
+.cal-dia.tem-treino{ background: var(--grey-700); border-color: var(--line-hard); }
+
+.cal-num{
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .85rem;
+  color: var(--grey-400);
+  margin-bottom: .35rem;
+}
+.cal-dia.tem-treino .cal-num{ color: var(--white); }
+
+.cal-treino{
+  display: block;
+  font-size: .62rem;
+  line-height: 1.3;
+  color: var(--grey-400);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.acoes-agenda{ display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+
+.rodape{
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line-soft);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #5a5a5a;
+  text-align: center;
+}
+
+/* ============================================================
+   12. MODAL
+   ============================================================ */
+.modal{
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  padding: 1rem;
+  background: rgba(0,0,0,.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box{
+  width: min(640px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--black);
+  border: 1px solid var(--line-hard);
+}
+
+.modal-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.modal-head h3{ font-size: clamp(1.1rem, 2vw, 1.5rem); }
+
+.modal-lista{ display: flex; flex-direction: column; gap: .35rem; margin-top: 1.5rem; }
+.modal-lista h4{
+  margin: 1.5rem 0 .5rem;
+  font-family: var(--font-body);
+  font-stretch: 100%;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+.modal-lista h4:first-child{ margin-top: 0; }
+
+.item-treino{
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  width: 100%;
+  padding: .9rem 1rem;
+  text-align: left;
+  background: transparent;
+  border: 1px solid var(--line-soft);
+  color: var(--white);
+  cursor: pointer;
+  transition: background .3s ease, border-color .3s ease;
+}
+.item-treino:hover{ background: var(--grey-800); border-color: var(--line-hard); }
+.item-treino b{
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: .85rem;
+  letter-spacing: .01em;
+}
+.item-treino span{ font-size: .72rem; color: var(--grey-500); letter-spacing: .05em; }
+
+/* ============================================================
+   13. SESSÃO DE TREINO
+   ============================================================ */
+.sessao-treino{ margin-top: 1rem; }
+
+.sessao-cabecalho{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+.sessao-cabecalho h2{ font-size: clamp(1.5rem, 3.4vw, 2.5rem); }
+
+.sessao-sobretitulo{
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  margin-bottom: .5rem;
+}
+
+.sessao-metricas,
+.resumo-metricas{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.sessao-metrica{
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  padding: 1rem 1.1rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+}
+.sessao-metrica span{
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+.sessao-metrica strong{
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sessao-progresso{
+  position: relative;
+  height: 3px;
+  background: var(--grey-800);
+  margin: 1rem 0 2rem;
+  overflow: hidden;
+}
+.sessao-progresso > span{
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--white);
+  transition: width .6s var(--ease);
+}
+
+.lista-sessao{ display: flex; flex-direction: column; gap: .75rem; margin: 2rem 0; }
+
+.sessao-exercicio{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+  transition: background .3s ease, border-color .3s ease;
+}
+.sessao-exercicio.feito{ background: var(--grey-700); border-color: var(--line-hard); opacity: .7; }
+
+.sessao-exercicio-info{ flex: 1 1 260px; min-width: 0; }
+.sessao-numero{
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .8rem;
+  color: var(--grey-500);
+  margin-bottom: .3rem;
+}
+.sessao-exercicio-info h3{ font-size: 1rem; margin-bottom: .4rem; }
+.sessao-exercicio-info p{ font-size: .78rem; color: var(--grey-500); letter-spacing: .05em; }
+
+.sessao-exercicio-info details{ margin-top: .5rem; font-size: .78rem; color: var(--grey-500); }
+.sessao-exercicio-info summary{
+  cursor: pointer;
+  color: var(--grey-400);
+  font-style: italic;
+  list-style: none;
+}
+.sessao-exercicio-info summary::-webkit-details-marker{ display: none; }
+.sessao-exercicio-info summary::before{ content: '+ '; color: var(--white); font-family: var(--font-serif); }
+.sessao-exercicio-info details[open] summary::before{ content: '− '; }
+.sessao-exercicio-info details p{
+  padding: .5rem 0 .5rem 1rem;
+  border-left: 1px solid var(--line);
+  margin-top: .4rem;
+}
+
+.acoes-sessao{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+/* ============================================================
+   14. RESUMO DE TREINO
+   ============================================================ */
+.resumo-treino{ margin-top: 1rem; }
+
+.resumo-titulo{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 0 1.75rem;
+  border-bottom: 1px solid var(--line-soft);
+  margin-bottom: 1.5rem;
+}
+.resumo-icone{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  font-size: 1.1rem;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.resumo-titulo h3{ font-size: clamp(1.2rem, 2.2vw, 1.6rem); margin-bottom: .25rem; }
+.resumo-titulo p{ font-family: var(--font-serif); font-style: italic; font-size: .95rem; color: var(--grey-400); }
+
+.resumo-exercicios{ display: flex; flex-direction: column; gap: .35rem; margin: 1rem 0 2rem; }
+.resumo-exercicios li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem 1rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+  font-size: .85rem;
+}
+.resumo-exercicios li.feito{ border-left: 2px solid #9cffd5; }
+.resumo-exercicios li.nao-feito{ border-left: 2px solid #ff5a5a; }
+.resumo-exercicios li b{
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.resumo-exercicios li.feito b{ color: #9cffd5; }
+.resumo-exercicios li.nao-feito b{ color: #ff5a5a; }
+
+/* ============================================================
+   15. AGENDA PESSOAL (Treinar.html)
+   ============================================================ */
+.agenda-pessoal-cabecalho{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+.agenda-pessoal-cabecalho h2{ margin-bottom: .5rem; }
+
+.lista-agenda-pessoal{ display: grid; grid-template-columns: 1fr; gap: .75rem; }
+
+.agenda-pessoal-dia{
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 1.25rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+  transition: border-color .3s ease;
+}
+.agenda-pessoal-dia.hoje{ border-color: var(--white); background: var(--grey-700); }
+.agenda-pessoal-dia.dia-descanso{ opacity: .7; }
+
+.agenda-pessoal-dia-nome{ display: flex; align-items: center; gap: .75rem; }
+.agenda-pessoal-dia-nome h3{ font-size: .95rem; letter-spacing: .01em; }
+
+.tag-hoje{
+  padding: .2rem .55rem;
+  font-size: .55rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  background: var(--white);
+  color: var(--black);
+}
+
+.agenda-pessoal-info{ display: flex; flex-direction: column; gap: .2rem; }
+.agenda-pessoal-info b{
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: -.005em;
+  text-transform: none;
+}
+.agenda-pessoal-info span{ font-size: .72rem; letter-spacing: .05em; color: var(--grey-500); }
+
+.agenda-pessoal-descanso{ font-family: var(--font-serif); font-style: italic; font-size: .95rem; color: var(--grey-500); }
+.agenda-pessoal-editar{ align-self: flex-start; border-color: var(--line); color: var(--grey-400); }
+
+.progresso-pessoal{ margin-top: 1.5rem; }
+.progresso-pessoal-grade{ display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.historico-treinos{ display: flex; flex-direction: column; gap: .6rem; }
+.historico-item{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+  padding: .9rem 1rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+}
+.historico-item > div{ display: flex; flex-direction: column; gap: .2rem; }
+.historico-item b{ font-size: .82rem; }
+.historico-item span{ color: var(--grey-500); font-size: .7rem; }
+.grafico-radar{ display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5rem; }
+.grafico-radar svg{ width: min(100%, 300px); overflow: visible; }
+.radar-grade{ fill: none; stroke: var(--line); stroke-width: 1; }
+.radar-eixo{ stroke: var(--line-soft); stroke-width: 1; }
+.radar-dados{ fill: rgba(156,255,213,.2); stroke: #9cffd5; stroke-width: 2; }
+.grafico-radar circle{ fill: #9cffd5; }
+.grafico-radar text{ fill: var(--grey-400); font: 10px var(--font-body); }
+.radar-legenda{ display: grid; grid-template-columns: 1fr auto; gap: .5rem 1rem; min-width: 125px; }
+.radar-legenda li{ display: contents; }
+.radar-legenda span{ color: var(--grey-400); font-size: .75rem; }
+.radar-legenda b{ font-size: .75rem; }
+
+/* ============================================================
+   16. INDEX (HOME)
+   ============================================================ */
+.container{
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) var(--pad);
+}
+
+.container h2{
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: .95;
+}
+
+.container p{
+  max-width: 1100ch;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--grey-300);
+  align-self: justify-start;
+  margin-bottom: 1.5rem;
+}
+.container p:first-of-type{
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--white);
+}
+
+.container .img{
+  width: 100%;
+  margin: clamp(2rem, 4vw, 3rem) 0;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05) brightness(.85);
+  transition: filter .8s ease, transform .8s ease;
+}
+.container .img:hover{
+  filter: grayscale(0) contrast(1) brightness(1);
+  transform: scale(1.005);
+}
+
+/* ============================================================
+   17. FOOTER
+   ============================================================ */
+.footer{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding: clamp(1.5rem, 3vw, 2rem) var(--pad);
+  border-top: 1px solid var(--line-soft);
+  font-size: .66rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #5a5a5a;
+}
+.footer span:last-child{
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .85rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--grey-400);
+}
+
+/* ============================================================
+   18. RESPONSIVO
+   ============================================================ */
+@media (min-width: 640px){
+  .grid-2{ grid-template-columns: repeat(2, 1fr); }
+  .lista-prontos{ grid-template-columns: repeat(2, 1fr); }
+  .form-treino{ grid-template-columns: repeat(3, 1fr); }
+  .lista-agenda-pessoal{ grid-template-columns: repeat(2, 1fr); }
+  .progresso-pessoal-grade{ grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); }
+  .grade-semanal{ grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px){
+  .grade-semanal{ grid-template-columns: repeat(4, 1fr); }
+  .lista-agenda-pessoal{ grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1100px){
+  .grade-semanal{ grid-template-columns: repeat(7, 1fr); }
+  .lista-agenda-pessoal{ grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 640px){
+  .menu{ flex-wrap: wrap; gap: 1rem; }
+  .menu nav ul{ gap: 1rem; flex-wrap: wrap; }
+  .menu nav a{ font-size: .62rem; letter-spacing: .16em; }
+
+  .ex-campos{ grid-template-columns: 1fr 1fr; }
+  .cal-dia{ min-height: 60px; padding: .4rem; }
+  .cal-treino{ font-size: .55rem; }
+
+  .agenda-top .vista-toggle{ margin-left: 0; width: 100%; }
+  .agenda-top .vista-toggle .btn{ flex: 1; }
+
+  .meu-treino{ flex-direction: column; align-items: stretch; }
+  .meu-treino .btn{ margin-left: 0; align-self: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

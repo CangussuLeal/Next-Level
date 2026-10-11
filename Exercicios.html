@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Next Level Calistenics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ================= CABEÇALHO ================= -->
+  <header class="menu">
+            <h1>Next Level Calistenics</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Exercicios.html">Treinos</a></li>
+                    <li><a href="Treinar.html">Plano de treino</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+
+    <!-- Grupo 1 -->
+    <div class="ticker__group">
+      <span class="is-accent">Push</span><span class="dot">·</span>
+      <span>Pull</span><span class="dot">·</span>
+      <span>Pernas</span><span class="dot">·</span>
+      <span>Core</span><span class="dot">·</span>
+      <span class="is-accent">Habilidades</span><span class="dot">·</span>
+      <span>Mobilidade</span><span class="dot">·</span>
+      <span>Progressão</span><span class="dot">·</span>
+      <span class="is-accent">Handstand</span><span class="dot">·</span>
+      <span>Front Lever</span><span class="dot">·</span>
+      <span>Planche</span><span class="dot">·</span>
+      <span class="is-accent">Muscle-up</span><span class="dot">·</span>
+      <span>Pistola</span><span class="dot">·</span>
+      <span>Dragon Flag</span><span class="dot">·</span>
+    </div>
+
+    <!-- Grupo 2 (cópia exata — necessário para o loop ser contínuo) -->
+    <div class="ticker__group">
+      <span class="is-accent">Push</span><span class="dot">·</span>
+      <span>Pull</span><span class="dot">·</span>
+      <span>Pernas</span><span class="dot">·</span>
+      <span>Core</span><span class="dot">·</span>
+      <span class="is-accent">Habilidades</span><span class="dot">·</span>
+      <span>Mobilidade</span><span class="dot">·</span>
+      <span>Progressão</span><span class="dot">·</span>
+      <span class="is-accent">Handstand</span><span class="dot">·</span>
+      <span>Front Lever</span><span class="dot">·</span>
+      <span>Planche</span><span class="dot">·</span>
+      <span class="is-accent">Muscle-up</span><span class="dot">·</span>
+      <span>Pistola</span><span class="dot">·</span>
+      <span>Dragon Flag</span><span class="dot">·</span>
+    </div>
+
+  </div>
+</div>
+  <!-- ================= PASSO 1: MODO ================= -->
+  
+  <section id="passo1" class="card">
+    <h2><span class="num"> </span> Como você quer começar?</h2>
+
+    <div class="grid-2">
+      <button class="opcao" data-modo="prontos">
+        <span class="ico"></span>
+        <strong>Treinos Prontos</strong>
+        <small>Escolha um nível e comece um treino guiado agora.</small>
+      </button>
+
+      <button class="opcao" data-modo="criar">
+        <span class="ico"></span>
+        <strong>Criar Meu Treino</strong>
+        <small>Monte seu treino do zero, escolhendo foco e exercícios.</small>
+      </button>
+    </div>
+
+  </section>
+  
+  <!-- ================= PASSO 2A: TREINOS PRONTOS ================= -->
+  <section id="secaoProntos" class="card">
+    <h2><span class="num"> </span> Treinos Prontos</h2>
+    <p class="desc">
+      Escolha um treino pelo seu nível e comece agora. Ao terminar, você verá um resumo do seu desempenho.
+    </p>
+
+    <!-- Filtro por nível -->
+    <div class="filtro-niveis" id="filtroNiveis">
+      <button class="filtro" data-filtro-nivel="todos">Todos</button>
+      <button class="filtro" data-filtro-nivel="1">Iniciante</button>
+      <button class="filtro" data-filtro-nivel="2">Básico</button>
+      <button class="filtro" data-filtro-nivel="3">Intermediário</button>
+      <button class="filtro" data-filtro-nivel="4">Avançado</button>
+      <button class="filtro" data-filtro-nivel="5">Elite</button>
+    </div>
+
+    <!-- Lista de treinos prontos -->
+   <div class="lista-prontos" id="listaProntos">
+
+  <!-- ==================== NÍVEL 0 · PRÉ-INICIANTE ==================== -->
+  <article class="treino-pronto" data-nivel="1">
+    <header class="tp-head">
+      <h3>Nível 0 · Primeiros passos</h3>
+      <span class="tag-nivel">Nível 1 · Pré-iniciante</span>
+    </header>
+    <p class="tp-desc">Para quem nunca treinou e ainda não faz nenhuma flexão, dominada ou fundo completo. Foco em construir base.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 4 · <b>Reps:</b> 5-10</p>
+    <ul class="tp-exercicios">
+      <li>Dominadas assistidas (pés no chão)</li>
+      <li>Flexão inclinada</li>
+      <li>Australian pull-ups assistidas</li>
+      <li>Agachamento com peso corporal</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <!-- ==================== NÍVEL 1 ==================== -->
+  <article class="treino-pronto" data-nivel="1">
+    <header class="tp-head">
+      <h3>Full Body Iniciante</h3>
+      <span class="tag-nivel">Nível 1 · Iniciante</span>
+    </header>
+    <p class="tp-desc">Corpo inteiro com movimentos básicos. Foco em técnica e estabilidade.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 8-12</p>
+    <ul class="tp-exercicios">
+      <li>Prancha</li>
+      <li>Agachamento com peso corporal</li>
+      <li>Push-up negativo</li>
+      <li>Flexão de escápula</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="1">
+    <header class="tp-head">
+      <h3>Base de Core e Pernas</h3>
+      <span class="tag-nivel">Nível 1 · Iniciante</span>
+    </header>
+    <p class="tp-desc">Fortaleça o core e as pernas com movimentos simples e controlados.</p>
+    <p class="tp-info"><b>Frequência:</b> 2x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 10-12</p>
+    <ul class="tp-exercicios">
+      <li>Prancha</li>
+      <li>Prancha lateral</li>
+      <li>Agachamento profundo</li>
+      <li>Suspensão passiva</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="1">
+    <header class="tp-head">
+      <h3>Fundamentos de Empurrar</h3>
+      <span class="tag-nivel">Nível 1 · Iniciante</span>
+    </header>
+    <p class="tp-desc">Introdução aos movimentos de empurrar. Constrói base para flexões e fundos.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 8-12</p>
+    <ul class="tp-exercicios">
+      <li>Flexão com joelhos apoiados</li>
+      <li>Fondos em banco</li>
+      <li>Estático flexões</li>
+      <li>Flexão inclinada</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="1">
+    <header class="tp-head">
+      <h3>Fundamentos de Puxar</h3>
+      <span class="tag-nivel">Nível 1 · Iniciante</span>
+    </header>
+    <p class="tp-desc">Preparação para dominadas com australianas e suspensão.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 8-10</p>
+    <ul class="tp-exercicios">
+      <li>Suspensão passiva</li>
+      <li>Australian chin-ups</li>
+      <li>Australian pull-ups</li>
+      <li>Banded horizontal pull-apart</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <!-- ==================== NÍVEL 2 ==================== -->
+  <article class="treino-pronto" data-nivel="2">
+    <header class="tp-head">
+      <h3>Push Básico</h3>
+      <span class="tag-nivel">Nível 2 · Básico</span>
+    </header>
+    <p class="tp-desc">Empurrar com variações de flexão. Foco em peito, ombro e tríceps.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 10-15</p>
+    <ul class="tp-exercicios">
+      <li>Flexão normal</li>
+      <li>Flexão ampla</li>
+      <li>Flexão diamante</li>
+      <li>Extensão de tríceps</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="2">
+    <header class="tp-head">
+      <h3>Pull Básico</h3>
+      <span class="tag-nivel">Nível 2 · Básico</span>
+    </header>
+    <p class="tp-desc">Puxada horizontal e excêntrica. Preparação para o pull-up completo.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 8-12</p>
+    <ul class="tp-exercicios">
+      <li>Pull-up australiano</li>
+      <li>Pull-up negativo</li>
+      <li>Pull-up de escápula</li>
+      <li>Banded horizontal pull-apart</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="2">
+    <header class="tp-head">
+      <h3>Pernas Básico</h3>
+      <span class="tag-nivel">Nível 2 · Básico</span>
+    </header>
+    <p class="tp-desc">Agachamentos com foco em unilateral e simetria.</p>
+    <p class="tp-info"><b>Frequência:</b> 2x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 10-12</p>
+    <ul class="tp-exercicios">
+      <li>Agachamento profundo</li>
+      <li>Agachamento de posição estreita</li>
+      <li>Agachamento dividido búlgaro</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="2">
+    <header class="tp-head">
+      <h3>Fondos & Tríceps</h3>
+      <span class="tag-nivel">Nível 2 · Básico</span>
+    </header>
+    <p class="tp-desc">Base de empurrar em paralelas. Essencial para pino e planche mais tarde.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 8-12</p>
+    <ul class="tp-exercicios">
+      <li>Fondos curtos</li>
+      <li>Fondos em banco</li>
+      <li>Flexão diamante</li>
+      <li>Flexão esfinge</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="2">
+    <header class="tp-head">
+      <h3>Core Básico</h3>
+      <span class="tag-nivel">Nível 2 · Básico</span>
+    </header>
+    <p class="tp-desc">Fundamentos de core: prancha, hollow body e elevação de pernas.</p>
+    <p class="tp-info"><b>Frequência:</b> 3x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 10-15</p>
+    <ul class="tp-exercicios">
+      <li>Prancha</li>
+      <li>Prancha lateral</li>
+      <li>Elevação de pernas</li>
+      <li>Crunches completos em solo</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <!-- ==================== NÍVEL 3 ==================== -->
+  <article class="treino-pronto" data-nivel="3">
+    <header class="tp-head">
+      <h3>Push Intermediário</h3>
+      <span class="tag-nivel">Nível 3 · Intermediário</span>
+    </header>
+    <p class="tp-desc">Potência e força unilateral com flexões explosivas e arqueiro.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 4 · <b>Reps:</b> 8-12</p>
+    <ul class="tp-exercicios">
+      <li>Flexão explosiva</li>
+      <li>Flexão arqueiro</li>
+      <li>Flexão diamante</li>
+      <li>Extensão de tríceps</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="3">
+    <header class="tp-head">
+      <h3>Pull Intermediário</h3>
+      <span class="tag-nivel">Nível 3 · Intermediário</span>
+    </header>
+    <p class="tp-desc">Transição para o pull-up completo com assistência de faixa.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 4 · <b>Reps:</b> 6-10</p>
+    <ul class="tp-exercicios">
+      <li>Pull-up assistido com faixa</li>
+      <li>Pull-up australiano</li>
+      <li>Pull-up negativo</li>
+      <li>Pull-up de escápula</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="3">
+    <header class="tp-head">
+      <h3>Habilidades Introdutórias</h3>
+      <span class="tag-nivel">Nível 3 · Intermediário</span>
+    </header>
+    <p class="tp-desc">Primeiros contatos com movimentos de ginástica e controle invertido.</p>
+    <p class="tp-info"><b>Frequência:</b> 2x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 4-6</p>
+    <ul class="tp-exercicios">
+      <li>Skin the cat (abdômen grupado)</li>
+      <li>Vela</li>
+      <li>Agachamento cossaco</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="3">
+    <header class="tp-head">
+      <h3>Ombro & Pino</h3>
+      <span class="tag-nivel">Nível 3 · Intermediário</span>
+    </header>
+    <p class="tp-desc">Introdução ao trabalho de ombro. Base para pino e planches.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 3 · <b>Reps:</b> 6-10</p>
+    <ul class="tp-exercicios">
+      <li>Pike push-ups</li>
+      <li>Flexão declinada</li>
+      <li>Hindu push-ups</li>
+      <li>Pino assistido contra a parede</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <!-- ==================== NÍVEL 4 ==================== -->
+  <article class="treino-pronto" data-nivel="4">
+    <header class="tp-head">
+      <h3>Push Avançado</h3>
+      <span class="tag-nivel">Nível 4 · Avançado</span>
+    </header>
+    <p class="tp-desc">Força máxima de empurrar com foco no OAPU.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 5 · <b>Reps:</b> 4-6</p>
+    <ul class="tp-exercicios">
+      <li>Flexão de um braço (OAPU)</li>
+      <li>Flexão arqueiro</li>
+      <li>Flexão explosiva</li>
+      <li>Planche (isometria com avanço)</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="4">
+    <header class="tp-head">
+      <h3>Pull Avançado</h3>
+      <span class="tag-nivel">Nível 4 · Avançado</span>
+    </header>
+    <p class="tp-desc">Pull-up completo e variações unilaterais de alta exigência.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 5 · <b>Reps:</b> 4-6</p>
+    <ul class="tp-exercicios">
+      <li>Pull-up pronado</li>
+      <li>Pull-up arqueiro</li>
+      <li>Pull-up neutro alternado</li>
+      <li>Front lever (isometria grupada)</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="4">
+    <header class="tp-head">
+      <h3>Pernas Avançado</h3>
+      <span class="tag-nivel">Nível 4 · Avançado</span>
+    </header>
+    <p class="tp-desc">Progressão para o agachamento pistola completo.</p>
+    <p class="tp-info"><b>Frequência:</b> 2x/semana · <b>Séries:</b> 4 · <b>Reps:</b> 6-8</p>
+    <ul class="tp-exercicios">
+      <li>Agachamento pistola (box)</li>
+      <li>Agachamento excêntrico pistola</li>
+      <li>Agachamento cossaco</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="4">
+    <header class="tp-head">
+      <h3>Habilidades Avançadas</h3>
+      <span class="tag-nivel">Nível 4 · Avançado</span>
+    </header>
+    <p class="tp-desc">Levers e planche — força de ombro, core e controle corporal.</p>
+    <p class="tp-info"><b>Frequência:</b> 2x/semana · <b>Séries:</b> 4 · <b>Reps:</b> 3-5</p>
+    <ul class="tp-exercicios">
+      <li>Front lever (abdômen carpado)</li>
+      <li>Back lever (extensão de tronco invertida)</li>
+      <li>Planche (isometria com avanço)</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="4">
+    <header class="tp-head">
+      <h3>Rumo ao Muscle-up</h3>
+      <span class="tag-nivel">Nível 4 · Avançado</span>
+    </header>
+    <p class="tp-desc">Progressões específicas para conquistar o muscle-up.</p>
+    <p class="tp-info"><b>Frequência:</b> 3x/semana · <b>Séries:</b> 4 · <b>Reps:</b> 4-6</p>
+    <ul class="tp-exercicios">
+      <li>Muscle-up assistido com salto</li>
+      <li>Muscle-up com pierna</li>
+      <li>Dominadas explosivas</li>
+      <li>Fondos em barra</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <!-- ==================== NÍVEL 5 ==================== -->
+  <article class="treino-pronto" data-nivel="5">
+    <header class="tp-head">
+      <h3>Elite Full Body</h3>
+      <span class="tag-nivel">Nível 5 · Elite</span>
+    </header>
+    <p class="tp-desc">Força máxima e habilidades de ginástica em um só treino.</p>
+    <p class="tp-info"><b>Frequência:</b> 2-3x/semana · <b>Séries:</b> 5 · <b>Reps:</b> 2-3</p>
+    <ul class="tp-exercicios">
+      <li>Muscle-up</li>
+      <li>Agachamento pistola completo</li>
+      <li>Front lever completo</li>
+      <li>Planche completo</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="5">
+    <header class="tp-head">
+      <h3>Ginástica Elite</h3>
+      <span class="tag-nivel">Nível 5 · Elite</span>
+    </header>
+    <p class="tp-desc">Domínio das habilidades estáticas e transições avançadas.</p>
+    <p class="tp-info"><b>Frequência:</b> 2x/semana · <b>Séries:</b> 5 · <b>Reps:</b> 2-3</p>
+    <ul class="tp-exercicios">
+      <li>Front lever completo</li>
+      <li>Back lever completo</li>
+      <li>Planche completo</li>
+      <li>Muscle-up</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="5">
+    <header class="tp-head">
+      <h3>Freestyle & Resistência</h3>
+      <span class="tag-nivel">Nível 5 · Elite</span>
+    </header>
+    <p class="tp-desc">Alto volume de repetições para resistência máxima e fluidez.</p>
+    <p class="tp-info"><b>Frequência:</b> 3x/semana · <b>Séries:</b> 1 · <b>Reps:</b> 30-40</p>
+    <ul class="tp-exercicios">
+      <li>Dominadas com palmada</li>
+      <li>Fondos explosivos</li>
+      <li>Flexão Superman</li>
+      <li>Muscle-up</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+  <article class="treino-pronto" data-nivel="5">
+    <header class="tp-head">
+      <h3>Skills Master</h3>
+      <span class="tag-nivel">Nível 5 · Elite</span>
+    </header>
+    <p class="tp-desc">Sessão de alta intensidade para pino, planche e levers.</p>
+    <p class="tp-info"><b>Frequência:</b> 2x/semana · <b>Séries:</b> 4 · <b>Reps:</b> 3-5</p>
+    <ul class="tp-exercicios">
+      <li>Pino a uma mão</li>
+      <li>Straddle press a pino</li>
+      <li>Straddle planche</li>
+      <li>Back lever completo</li>
+    </ul>
+    <button class="btn primary" data-acao="usar-pronto">Iniciar treino</button>
+  </article>
+
+</div><!-- /.lista-prontos -->
+</section>
+
+  <!-- ================= PASSO 2B: CRIAR TREINO ================= -->
+  <section id="secaoCriar" class="card">
+    <h2><span class="num"> </span> Meus treinos criados</h2>
+    <p class="desc">Consulte seus treinos personalizados ou monte um novo para adicionar à sua agenda.</p>
+
+    <div class="lista-meus-treinos" id="meusTreinos">
+      <p class="vazio">Nenhum treino criado ainda. Monte o seu abaixo e clique em salvar.</p>
+    </div>
+
+    <h3 class="sub">Criar novo treino</h3>
+
+    <!-- Dados do treino -->
+    <div class="form-treino">
+      <label class="campo">
+        <span>Nome do treino</span>
+        <input type="text" id="criarNome" placeholder="Ex.: Meu Push de Segunda" required>
+      </label>
+
+      <label class="campo">
+        <span>Nível</span>
+        <select id="criarNivel">
+          <option value="1">1 · Iniciante</option>
+          <option value="2" selected>2 · Básico</option>
+          <option value="3">3 · Intermediário</option>
+          <option value="4">4 · Avançado</option>
+          <option value="5">5 · Elite</option>
+        </select>
+      </label>
+
+      <label class="campo">
+        <span>Foco principal</span>
+        <select id="criarFoco">
+          <option value="push">Push (empurrar)</option>
+          <option value="pull">Pull (puxar)</option>
+          <option value="pernas">Pernas</option>
+          <option value="abdomen">Abdômen / Core</option>
+          <option value="habilidades">Habilidades</option>
+          <option value="superiores">Superiores (Push + Pull)</option>
+          <option value="full" selected>Full Body</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Lista de exercícios do treino personalizado -->
+    <h3 class="sub">Exercícios</h3>
+    <div class="lista-exercicios" id="criarExercicios">
+
+      <!-- Exercício 1 (exemplo) -->
+      <div class="ex">
+        <div class="ex-top">
+          <span class="ex-nome">Flexão normal</span>
+          <span class="tag tag-Push">Push</span>
+          <span class="tag">N2</span>
+          <button class="btn-ico" data-acao="del-ex" title="Remover">✕</button>
+        </div>
+        <p class="ex-exec"><b>Execução:</b> Padrão ouro</p>
+        <details class="ex-det">
+          <summary>Dicas de execução e objetivo</summary>
+          <p>Mãos na largura dos ombros, cotovelos junto ao corpo (forma de flecha), desça até 90°</p>
+          <p class="mut"><b>Objetivo:</b> Força geral de peito, ombros e tríceps</p>
+        </details>
+        <div class="ex-campos">
+          <label>Séries
+            <input type="number" min="1" value="3" data-campo="series">
+          </label>
+          <label>Reps
+            <input value="10-15" data-campo="reps">
+          </label>
+          <label>Descanso (s)
+            <input type="number" min="0" step="15" value="180" data-campo="descanso">
+          </label>
+        </div>
+      </div>
+
+    </div><!-- /#criarExercicios -->
+
+    <!-- Adicionar exercício -->
+    <div class="add-row">
+      <select class="add-select" id="criarAddSelect">
+
+  <optgroup label="Push · Flexões">
+    <option value="Flexão inclinada">N1 · Flexão inclinada</option>
+    <option value="Flexão com joelhos apoiados">N1 · Flexão com joelhos apoiados</option>
+    <option value="Estático flexões">N1 · Estático flexões</option>
+    <option value="Flexão de escápula">N1 · Flexão de escápula</option>
+    <option value="Push-up negativo">N1 · Push-up negativo</option>
+    <option value="Flexão normal">N2 · Flexão normal</option>
+    <option value="Flexão ampla">N2 · Flexão ampla</option>
+    <option value="Flexão diamante">N2 · Flexão diamante</option>
+    <option value="Flexão esfinge">N2 · Flexão esfinge</option>
+    <option value="Flexão T">N2 · Flexão T</option>
+    <option value="Extensão de tríceps">N2 · Extensão de tríceps</option>
+    <option value="Flexão explosiva">N3 · Flexão explosiva</option>
+    <option value="Flexão arqueiro">N3 · Flexão arqueiro</option>
+    <option value="Flexão declinada">N3 · Flexão declinada</option>
+    <option value="Pike push-ups">N3 · Pike push-ups</option>
+    <option value="Hindu push-ups">N3 · Hindu push-ups</option>
+    <option value="Flexão spiderman">N3 · Flexão spiderman</option>
+    <option value="Flexão a codos">N3 · Flexão a codos</option>
+    <option value="Flexão esfinge em X">N3 · Flexão esfinge em X</option>
+    <option value="Flexão de um braço (OAPU)">N4 · Flexão de um braço (OAPU)</option>
+    <option value="Flexão com palmada">N4 · Flexão com palmada</option>
+    <option value="Flexão Superman">N4 · Flexão Superman</option>
+    <option value="Flexão 360°">N4 · Flexão 360°</option>
+    <option value="Pseudo push-ups">N4 · Pseudo push-ups</option>
+    <option value="Flexão com palmada entre as pernas">N4 · Flexão com palmada entre as pernas</option>
+    <option value="Flexão Superman com palmada atrás">N5 · Flexão Superman com palmada atrás</option>
+    <option value="Flexão azteca">N5 · Flexão azteca</option>
+    <option value="Flexão a um braço com palmada no peito">N5 · Flexão a um braço com palmada no peito</option>
+  </optgroup>
+
+  <optgroup label="Push · Fondos">
+    <option value="Fondos em banco">N1 · Fondos em banco</option>
+    <option value="Fondos curtos">N2 · Fondos curtos</option>
+    <option value="Fondos negativos com salto">N2 · Fondos negativos com salto</option>
+    <option value="Fondos em banco a um braço">N2 · Fondos em banco a um braço</option>
+    <option value="Fondos">N2 · Fondos</option>
+    <option value="Fondos espartanos">N2 · Fondos espartanos</option>
+    <option value="Fondos inclinados">N3 · Fondos inclinados</option>
+    <option value="Fondos explosivos">N4 · Fondos explosivos</option>
+    <option value="Korean dips">N4 · Korean dips</option>
+    <option value="Fondos a tucked planche">N4 · Fondos a tucked planche</option>
+    <option value="Fondos a um braço">N5 · Fondos a um braço</option>
+    <option value="Fondos com palmada">N5 · Fondos com palmada</option>
+    <option value="Fondos 180°">N5 · Fondos 180°</option>
+  </optgroup>
+
+  <optgroup label="Pull · Dominadas">
+    <option value="Suspensão passiva">N1 · Suspensão passiva</option>
+    <option value="Banded overhead pull-apart">N1 · Banded overhead pull-apart</option>
+    <option value="Banded horizontal pull-apart">N1 · Banded horizontal pull-apart</option>
+    <option value="Pull-down com faixa">N1 · Pull-down com faixa</option>
+    <option value="Australian chin-ups">N1 · Australian chin-ups</option>
+    <option value="Australian pull-ups">N1 · Australian pull-ups</option>
+    <option value="Pull-up de escápula">N2 · Pull-up de escápula</option>
+    <option value="Pull-up negativo">N2 · Pull-up negativo</option>
+    <option value="Dominada supina estática">N2 · Dominada supina estática</option>
+    <option value="Dominadas supinas negativas">N2 · Dominadas supinas negativas</option>
+    <option value="Dominadas supinas curtas">N2 · Dominadas supinas curtas</option>
+    <option value="Dominada prona estática">N2 · Dominada prona estática</option>
+    <option value="Dominada prona negativa">N2 · Dominada prona negativa</option>
+    <option value="Dominadas pronas curtas">N2 · Dominadas pronas curtas</option>
+    <option value="Pull-up assistido com faixa">N3 · Pull-up assistido com faixa</option>
+    <option value="Dominadas supinas">N3 · Dominadas supinas</option>
+    <option value="Dominadas pronas">N3 · Dominadas pronas</option>
+    <option value="Dominadas neutras">N3 · Dominadas neutras</option>
+    <option value="Dominadas agarre misto">N3 · Dominadas agarre misto</option>
+    <option value="Dominadas agarre amplo">N3 · Dominadas agarre amplo</option>
+    <option value="Dominadas agarre estreito">N3 · Dominadas agarre estreito</option>
+    <option value="Retrações escapulares">N3 · Retrações escapulares</option>
+    <option value="Remo em barra">N3 · Remo em barra</option>
+    <option value="Pull-up pronado">N4 · Pull-up pronado</option>
+    <option value="Pull-up arqueiro">N4 · Pull-up arqueiro</option>
+    <option value="Pull-up neutro alternado">N4 · Pull-up neutro alternado</option>
+    <option value="Dominadas explosivas">N4 · Dominadas explosivas</option>
+    <option value="Dominadas arqueiras">N4 · Dominadas arqueiras</option>
+    <option value="Dominadas typewriter">N4 · Dominadas typewriter</option>
+    <option value="Dominadas Artem Morozov">N4 · Dominadas Artem Morozov</option>
+    <option value="Dominadas supinas em L">N4 · Dominadas supinas em L</option>
+    <option value="Dominadas com palmada">N5 · Dominadas com palmada</option>
+    <option value="Dominadas tocando pés">N5 · Dominadas tocando pés</option>
+    <option value="Dominadas a um braço">N5 · Dominadas a um braço</option>
+    <option value="Estático dominada a um braço">N5 · Estático dominada a um braço</option>
+    <option value="Retração escapular a um braço">N5 · Retração escapular a um braço</option>
+  </optgroup>
+
+  <optgroup label="Pull · Muscle-up">
+    <option value="Muscle-up assistido com salto">N3 · Muscle-up assistido com salto</option>
+    <option value="Muscle-up com pierna">N3 · Muscle-up com pierna</option>
+    <option value="Muscle-up">N4 · Muscle-up</option>
+    <option value="Muscle-up estrito">N4 · Muscle-up estrito</option>
+    <option value="Muscle-up agarre cerrado">N4 · Muscle-up agarre cerrado</option>
+    <option value="Muscle-up agarre amplo">N4 · Muscle-up agarre amplo</option>
+    <option value="Muscle-up supino">N4 · Muscle-up supino</option>
+    <option value="Muscle-up lento">N4 · Muscle-up lento</option>
+    <option value="Muscle-up 360">N5 · Muscle-up 360</option>
+    <option value="Muscle-up a front lever">N5 · Muscle-up a front lever</option>
+    <option value="Muscle-up a um braço">N5 · Muscle-up a um braço</option>
+  </optgroup>
+
+  <optgroup label="Pernas">
+    <option value="Agachamento com peso corporal">N1 · Agachamento com peso corporal</option>
+    <option value="Agachamento profundo">N1 · Agachamento profundo</option>
+    <option value="Sentadilla assistida">N1 · Sentadilla assistida</option>
+    <option value="Estático sentadilla contra a parede">N1 · Estático sentadilla contra a parede</option>
+    <option value="Sentadilla curta">N1 · Sentadilla curta</option>
+    <option value="Estático sentadilla">N2 · Estático sentadilla</option>
+    <option value="Levantamento de gêmeos">N2 · Levantamento de gêmeos</option>
+    <option value="Curl femoral com peso corporal">N2 · Curl femoral com peso corporal</option>
+    <option value="Sentadilla sumo">N2 · Sentadilla sumo</option>
+    <option value="Zancadas">N2 · Zancadas</option>
+    <option value="Agachamento de posição estreita">N2 · Agachamento de posição estreita</option>
+    <option value="Agachamento dividido búlgaro">N2 · Agachamento dividido búlgaro</option>
+    <option value="Agachamento cossaco">N3 · Agachamento cossaco</option>
+    <option value="Zancadas laterais">N3 · Zancadas laterais</option>
+    <option value="Sentadilla curta a uma perna">N3 · Sentadilla curta a uma perna</option>
+    <option value="Curl femoral a uma perna">N3 · Curl femoral a uma perna</option>
+    <option value="Zancadas explosivas com troca">N3 · Zancadas explosivas com troca</option>
+    <option value="Hawaiian squat">N4 · Hawaiian squat</option>
+    <option value="Maldinis squat">N4 · Maldinis squat</option>
+    <option value="Pistol squat assistida">N4 · Pistol squat assistida</option>
+    <option value="Shotgun pistol squat assistida">N4 · Shotgun pistol squat assistida</option>
+    <option value="Agachamento pistola (box)">N4 · Agachamento pistola (box)</option>
+    <option value="Agachamento excêntrico pistola">N4 · Agachamento excêntrico pistola</option>
+    <option value="Sentadilla explosiva">N4 · Sentadilla explosiva</option>
+    <option value="Saltos a plataforma">N4 · Saltos a plataforma</option>
+    <option value="Airborne squat">N4 · Airborne squat</option>
+    <option value="Estático contra a parede a 1 perna">N4 · Estático contra a parede a 1 perna</option>
+    <option value="Agachamento pistola completo">N5 · Agachamento pistola completo</option>
+    <option value="Pistol squat">N5 · Pistol squat</option>
+    <option value="Shotgun pistol squat">N5 · Shotgun pistol squat</option>
+    <option value="Pistol squat explosiva">N5 · Pistol squat explosiva</option>
+  </optgroup>
+
+  <optgroup label="Abdômen / Core">
+    <option value="Prancha">N1 · Prancha</option>
+    <option value="Prancha lateral">N1 · Prancha lateral</option>
+    <option value="Crunches curtos em solo">N1 · Crunches curtos em solo</option>
+    <option value="Elevação de pernas">N2 · Elevação de pernas</option>
+    <option value="Abdominal remador">N2 · Abdominal remador</option>
+    <option value="Crunches completos em solo">N2 · Crunches completos em solo</option>
+    <option value="Tijeras em solo">N2 · Tijeras em solo</option>
+    <option value="Leg raises em solo">N2 · Leg raises em solo</option>
+    <option value="Hollow body hold">N3 · Hollow body hold</option>
+    <option value="Windshield wipers em solo">N3 · Windshield wipers em solo</option>
+    <option value="Crunches lumbares">N3 · Crunches lumbares</option>
+    <option value="Crunches curtos lumbares">N3 · Crunches curtos lumbares</option>
+    <option value="Estático crunche lumbar">N3 · Estático crunche lumbar</option>
+    <option value="Russian twist crunches">N3 · Russian twist crunches</option>
+    <option value="Knee raises em fundos">N3 · Knee raises em fundos</option>
+    <option value="Knee raises em barra">N3 · Knee raises em barra</option>
+    <option value="L sit raises em fundos">N3 · L sit raises em fundos</option>
+    <option value="L sit raises em barra">N3 · L sit raises em barra</option>
+    <option value="Dragon flag">N4 · Dragon flag</option>
+    <option value="Estático L sit em fundos">N4 · Estático L sit em fundos</option>
+    <option value="Knee raises em barra com guiño">N4 · Knee raises em barra com guiño</option>
+    <option value="L sit raises em fundos com guiño">N4 · L sit raises em fundos com guiño</option>
+    <option value="Elevações em V em fundos">N4 · Elevações em V em fundos</option>
+    <option value="Leg raises">N4 · Leg raises</option>
+    <option value="Windshield wipers">N4 · Windshield wipers</option>
+    <option value="Pullover">N4 · Pullover</option>
+    <option value="Prancha abdominal avançada">N4 · Prancha abdominal avançada</option>
+    <option value="L sit leg raises">N5 · L sit leg raises</option>
+    <option value="L sit pullover">N5 · L sit pullover</option>
+    <option value="Vuelta al mundo">N5 · Vuelta al mundo</option>
+  </optgroup>
+
+  <optgroup label="Habilidades · Levers e Flags">
+    <option value="Pica em barra">N2 · Pica em barra</option>
+    <option value="Skin the cat (abdômen grupado)">N3 · Skin the cat</option>
+    <option value="Vela">N3 · Vela</option>
+    <option value="Bandeira em tucked">N3 · Bandeira em tucked</option>
+    <option value="Tucked front lever">N3 · Tucked front lever</option>
+    <option value="Dragon flag a 1 pierna">N3 · Dragon flag a 1 pierna</option>
+    <option value="Back lever a 45º">N3 · Back lever a 45º</option>
+    <option value="Front lever (abdômen carpado)">N4 · Front lever (abdômen carpado)</option>
+    <option value="Front lever (isometria grupada)">N4 · Front lever (isometria grupada)</option>
+    <option value="Front lever (isometria unilateral)">N4 · Front lever (isometria unilateral)</option>
+    <option value="Back lever (extensão de tronco invertida)">N4 · Back lever (extensão de tronco invertida)</option>
+    <option value="Back lever (vela posterior)">N4 · Back lever (vela posterior)</option>
+    <option value="Back lever (perna flexionada)">N4 · Back lever (perna flexionada)</option>
+    <option value="Bandera caída">N4 · Bandera caída</option>
+    <option value="Back lever a 1 pierna">N4 · Back lever a 1 pierna</option>
+    <option value="Front lever a 1 pierna">N4 · Front lever a 1 pierna</option>
+    <option value="Hefesto com pés no solo">N4 · Hefesto com pés no solo</option>
+    <option value="Half front lever">N4 · Half front lever</option>
+    <option value="Front lever completo">N5 · Front lever completo</option>
+    <option value="Back lever completo">N5 · Back lever completo</option>
+    <option value="Hefesto">N5 · Hefesto</option>
+  </optgroup>
+
+  <optgroup label="Habilidades · Pino">
+    <option value="Pino assistido contra a parede">N3 · Pino assistido contra a parede</option>
+    <option value="Impulsos a pino">N3 · Impulsos a pino</option>
+    <option value="Flexões a pino assistidas curtas">N3 · Flexões a pino assistidas curtas</option>
+    <option value="Flexões a pino assistidas">N4 · Flexões a pino assistidas</option>
+    <option value="Pino">N4 · Pino</option>
+    <option value="Flexões a pino">N4 · Flexões a pino</option>
+    <option value="Rana a pino">N5 · Rana a pino</option>
+    <option value="Pino recto">N5 · Pino recto</option>
+    <option value="Flexões a pino profundas">N5 · Flexões a pino profundas</option>
+    <option value="Tucked planche a pino">N5 · Tucked planche a pino</option>
+    <option value="Straddle press a pino">N5 · Straddle press a pino</option>
+    <option value="Flexão a pino com palmada">N5 · Flexão a pino com palmada</option>
+    <option value="Press a pino">N5 · Press a pino</option>
+    <option value="Pino em barra">N5 · Pino em barra</option>
+    <option value="Pino a uma mão">N5 · Pino a uma mão</option>
+  </optgroup>
+
+  <optgroup label="Habilidades · Planche">
+    <option value="Rana">N3 · Rana</option>
+    <option value="Turtle planche">N3 · Turtle planche</option>
+    <option value="Planche lean">N4 · Planche lean</option>
+    <option value="Tucked planche">N4 · Tucked planche</option>
+    <option value="Pseudo plancha">N4 · Pseudo plancha</option>
+    <option value="Planche (isometria com avanço)">N4 · Planche (isometria com avanço)</option>
+    <option value="Planche (tuck isométrico)">N5 · Planche (tuck isométrico)</option>
+    <option value="Planche completo">N5 · Planche completo</option>
+    <option value="Straddle planche">N5 · Straddle planche</option>
+    <option value="Full planche">N5 · Full planche</option>
+    <option value="Straddle maltese planche">N5 · Straddle maltese planche</option>
+    <option value="Full maltese planche">N5 · Full maltese planche</option>
+  </optgroup>
+
+</select>
+      <button class="btn" data-acao="add-ex-criar">+ Adicionar exercício</button>
+    </div>
+
+    <div class="acoes-criar">
+      <button class="btn primary" data-acao="salvar-criar">💾 Salvar este treino</button>
+    </div>
+
+  </section>
+
+  <!-- ================= PASSO 3: AGENDA ================= -->
+  <section id="secaoAgenda" class="card">
+    <h2><span class="num"> </span> Minha Agenda</h2>
+    <p class="desc">
+      Escolha um treino (pronto ou criado por você) e distribua na semana.
+      A agenda se repete ao longo do mês.
+    </p>
+
+    <!-- Seletor de mês -->
+    <div class="agenda-top">
+      <label class="campo">
+        <span>Mês</span>
+        <select id="agendaMes">
+          <option value="1">Janeiro</option>
+          <option value="2">Fevereiro</option>
+          <option value="3">Março</option>
+          <option value="4">Abril</option>
+          <option value="5">Maio</option>
+          <option value="6">Junho</option>
+          <option value="7">Julho</option>
+          <option value="8">Agosto</option>
+          <option value="9">Setembro</option>
+          <option value="10" selected>Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+      </label>
+
+      <label class="campo">
+        <span>Ano</span>
+        <input type="number" id="agendaAno" value="2026" min="2020" max="2100">
+      </label>
+
+      <div class="vista-toggle">
+        <button class="btn" data-vista="semanal">📅 Semanal</button>
+        <button class="btn" data-vista="mensal">🗓️ Mensal</button>
+      </div>
+    </div>
+
+    <!-- ===== VISTA SEMANAL ===== -->
+    <div id="vistaSemanal">
+      <h3 class="sub">Semana</h3>
+
+      <div class="grade-semanal">
+
+        <!-- Segunda -->
+        <div class="dia-agenda" data-dia="seg">
+          <header class="dia-agenda-head">
+            <b>Segunda</b>
+            <button class="btn-ico" data-acao="atribuir" data-dia="seg" title="Escolher treino">+</button>
+          </header>
+          <div class="slot-treino vazio" data-dia="seg">Descanso</div>
+        </div>
+
+        <!-- Terça -->
+        <div class="dia-agenda" data-dia="ter">
+          <header class="dia-agenda-head">
+            <b>Terça</b>
+            <button class="btn-ico" data-acao="atribuir" data-dia="ter" title="Escolher treino">+</button>
+          </header>
+          <div class="slot-treino vazio" data-dia="ter">Descanso</div>
+        </div>
+
+        <!-- Quarta -->
+        <div class="dia-agenda" data-dia="qua">
+          <header class="dia-agenda-head">
+            <b>Quarta</b>
+            <button class="btn-ico" data-acao="atribuir" data-dia="qua" title="Escolher treino">+</button>
+          </header>
+          <div class="slot-treino vazio" data-dia="qua">Descanso</div>
+        </div>
+
+        <!-- Quinta -->
+        <div class="dia-agenda" data-dia="qui">
+          <header class="dia-agenda-head">
+            <b>Quinta</b>
+            <button class="btn-ico" data-acao="atribuir" data-dia="qui" title="Escolher treino">+</button>
+          </header>
+          <div class="slot-treino vazio" data-dia="qui">Descanso</div>
+        </div>
+
+        <!-- Sexta -->
+        <div class="dia-agenda" data-dia="sex">
+          <header class="dia-agenda-head">
+            <b>Sexta</b>
+            <button class="btn-ico" data-acao="atribuir" data-dia="sex" title="Escolher treino">+</button>
+          </header>
+          <div class="slot-treino vazio" data-dia="sex">Descanso</div>
+        </div>
+
+        <!-- Sábado -->
+        <div class="dia-agenda" data-dia="sab">
+          <header class="dia-agenda-head">
+            <b>Sábado</b>
+            <button class="btn-ico" data-acao="atribuir" data-dia="sab" title="Escolher treino">+</button>
+          </header>
+          <div class="slot-treino vazio" data-dia="sab">Descanso</div>
+        </div>
+
+        <!-- Domingo -->
+        <div class="dia-agenda" data-dia="dom">
+          <header class="dia-agenda-head">
+            <b>Domingo</b>
+            <button class="btn-ico" data-acao="atribuir" data-dia="dom" title="Escolher treino">+</button>
+          </header>
+          <div class="slot-treino vazio" data-dia="dom">Descanso</div>
+        </div>
+
+      </div><!-- /.grade-semanal -->
+
+      <p class="hint">
+        <b>Como funciona:</b> o treino que você coloca em cada dia da semana se repete todas as semanas do mês.
+        Você pode trocar a qualquer momento clicando no <b>+</b>.
+      </p>
+    </div>
+
+    <!-- ===== VISTA MENSAL ===== -->
+    <div id="vistaMensal">
+      <h3 class="sub">Mês</h3>
+
+      <div class="calendario">
+        <div class="cal-semana">
+          <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+          <span>Qui</span><span>Sex</span><span>Sáb</span>
+        </div>
+
+        <div class="cal-dias" id="calDias">
+          <!-- Os dias do mês serão gerados aqui -->
+          <div class="cal-dia"><span class="cal-num">1</span></div>
+          <div class="cal-dia"><span class="cal-num">2</span></div>
+          <div class="cal-dia"><span class="cal-num">3</span></div>
+          <div class="cal-dia"><span class="cal-num">4</span></div>
+          <div class="cal-dia"><span class="cal-num">5</span></div>
+          <div class="cal-dia"><span class="cal-num">6</span></div>
+          <div class="cal-dia"><span class="cal-num">7</span></div>
+          <div class="cal-dia"><span class="cal-num">8</span></div>
+          <div class="cal-dia"><span class="cal-num">9</span></div>
+          <div class="cal-dia"><span class="cal-num">10</span></div>
+          <div class="cal-dia"><span class="cal-num">11</span></div>
+          <div class="cal-dia"><span class="cal-num">12</span></div>
+          <div class="cal-dia"><span class="cal-num">13</span></div>
+          <div class="cal-dia"><span class="cal-num">14</span></div>
+          <div class="cal-dia"><span class="cal-num">15</span></div>
+          <div class="cal-dia"><span class="cal-num">16</span></div>
+          <div class="cal-dia"><span class="cal-num">17</span></div>
+          <div class="cal-dia"><span class="cal-num">18</span></div>
+          <div class="cal-dia"><span class="cal-num">19</span></div>
+          <div class="cal-dia"><span class="cal-num">20</span></div>
+          <div class="cal-dia"><span class="cal-num">21</span></div>
+          <div class="cal-dia"><span class="cal-num">22</span></div>
+          <div class="cal-dia"><span class="cal-num">23</span></div>
+          <div class="cal-dia"><span class="cal-num">24</span></div>
+          <div class="cal-dia"><span class="cal-num">25</span></div>
+          <div class="cal-dia"><span class="cal-num">26</span></div>
+          <div class="cal-dia"><span class="cal-num">27</span></div>
+          <div class="cal-dia"><span class="cal-num">28</span></div>
+          <div class="cal-dia"><span class="cal-num">29</span></div>
+          <div class="cal-dia"><span class="cal-num">30</span></div>
+          <div class="cal-dia"><span class="cal-num">31</span></div>
+        </div>
+      </div>
+
+      <p class="hint">
+        <b>Vista mensal:</b> mostra como a sua semana se distribui ao longo do mês.
+        Cada dia treinado recebe o nome do treino agendado.
+      </p>
+    </div>
+
+    <div class="acoes-agenda">
+      <button class="btn" data-acao="imprimir">🖨️ Imprimir / Salvar PDF</button>
+      <button class="btn danger" data-acao="limpar-agenda">🗑 Limpar agenda</button>
+    </div>
+  </section>
+
+  <!-- ================= RODAPÉ ================= -->
+  <p class="rodape">
+    Baseado no manual de calistenia · Push · Pull · Pernas · Abdômen · Habilidades avançadas
+  </p>
+
+</div><!-- /.wrap -->
+
+<!-- ================= MODAL: ESCOLHER TREINO ================= -->
+<div id="modalTreino" class="modal">
+  <div class="modal-box">
+    <header class="modal-head">
+      <h3>Escolher treino</h3>
+      <button class="btn-ico" data-acao="fechar-modal" title="Fechar">✕</button>
+    </header>
+
+    <p class="desc">Escolha qual treino vai neste dia. Ele se repetirá todas as semanas do mês.</p>
+
+    <div class="modal-lista" id="modalLista">
+      <!-- Treinos prontos -->
+      <h4>Treinos prontos</h4>
+      <button class="item-treino" data-treino="Full Body Iniciante" data-tipo="pronto">
+        <b>Full Body Iniciante</b>
+        <span>Nível 1 · 2-3x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Base de Core e Pernas" data-tipo="pronto">
+        <b>Base de Core e Pernas</b>
+        <span>Nível 1 · 2x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Push Básico" data-tipo="pronto">
+        <b>Push Básico</b>
+        <span>Nível 2 · 2-3x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Pull Básico" data-tipo="pronto">
+        <b>Pull Básico</b>
+        <span>Nível 2 · 2-3x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Pernas Básico" data-tipo="pronto">
+        <b>Pernas Básico</b>
+        <span>Nível 2 · 2x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Push Intermediário" data-tipo="pronto">
+        <b>Push Intermediário</b>
+        <span>Nível 3 · 2-3x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Pull Intermediário" data-tipo="pronto">
+        <b>Pull Intermediário</b>
+        <span>Nível 3 · 2-3x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Habilidades Introdutórias" data-tipo="pronto">
+        <b>Habilidades Introdutórias</b>
+        <span>Nível 3 · 2x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Push Avançado" data-tipo="pronto">
+        <b>Push Avançado</b>
+        <span>Nível 4 · 2-3x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Pull Avançado" data-tipo="pronto">
+        <b>Pull Avançado</b>
+        <span>Nível 4 · 2-3x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Pernas Avançado" data-tipo="pronto">
+        <b>Pernas Avançado</b>
+        <span>Nível 4 · 2x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Habilidades Avançadas" data-tipo="pronto">
+        <b>Habilidades Avançadas</b>
+        <span>Nível 4 · 2x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Elite Full Body" data-tipo="pronto">
+        <b>Elite Full Body</b>
+        <span>Nível 5 · 2-3x/semana</span>
+      </button>
+      <button class="item-treino" data-treino="Ginástica Elite" data-tipo="pronto">
+        <b>Ginástica Elite</b>
+        <span>Nível 5 · 2x/semana</span>
+      </button>
+
+      <!-- Meus treinos -->
+      <h4>Meus treinos criados</h4>
+      <div id="modalMeusTreinos">
+        <p class="vazio">Você ainda não criou nenhum treino.</p>
+      </div>
+
+      <!-- Descanso -->
+      <h4>Outros</h4>
+      <button class="item-treino" data-treino="" data-tipo="descanso">
+        <b>Descanso</b>
+        <span>Sem treino neste dia</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL: ADICIONAR TREINO À AGENDA ================= -->
+<div id="modalAgendarTreino" class="modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="tituloModalAgendar">
+    <header class="modal-head">
+      <div>
+        <p class="sessao-sobretitulo">Plano de treino</p>
+        <h3 id="tituloModalAgendar">Escolha os dias</h3>
+      </div>
+      <button class="btn-ico" data-acao="fechar-agendamento" title="Fechar">✕</button>
+    </header>
+    <p class="desc">Selecione os dias da semana em que este treino deve se repetir.</p>
+    <div id="diasAgendamento" class="dias-agendamento"></div>
+    <div class="acoes-criar">
+      <button class="btn" data-acao="fechar-agendamento">Cancelar</button>
+      <button class="btn primary" data-acao="confirmar-agendamento">Adicionar à agenda</button>
+    </div>
+  </div>
+</div>
+<script src="exercises.js"></script>
+</body>
+</html>

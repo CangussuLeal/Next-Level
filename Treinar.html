@@ -1,0 +1,162 @@
+ <!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Plano de treino — Blue Calistenics</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <main class="wrap">
+        <header class="menu">
+            <h1>Next Level Calistenics</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Exercicios.html">Treinos</a></li>
+                    <li><a href="Treinar.html" aria-current="page">Plano de treino</a></li>
+                </ul>
+            </nav>
+        </header>
+      <!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+
+    <!-- Grupo 1 -->
+    <div class="ticker__group">
+      <span class="is-accent">Push</span><span class="dot">·</span>
+      <span>Pull</span><span class="dot">·</span>
+      <span>Pernas</span><span class="dot">·</span>
+      <span>Core</span><span class="dot">·</span>
+      <span class="is-accent">Habilidades</span><span class="dot">·</span>
+      <span>Mobilidade</span><span class="dot">·</span>
+      <span>Progressão</span><span class="dot">·</span>
+      <span class="is-accent">Handstand</span><span class="dot">·</span>
+      <span>Front Lever</span><span class="dot">·</span>
+      <span>Planche</span><span class="dot">·</span>
+      <span class="is-accent">Muscle-up</span><span class="dot">·</span>
+      <span>Pistola</span><span class="dot">·</span>
+      <span>Dragon Flag</span><span class="dot">·</span>
+    </div>
+
+    <!-- Grupo 2 (cópia exata — necessário para o loop ser contínuo) -->
+    <div class="ticker__group">
+      <span class="is-accent">Push</span><span class="dot">·</span>
+      <span>Pull</span><span class="dot">·</span>
+      <span>Pernas</span><span class="dot">·</span>
+      <span>Core</span><span class="dot">·</span>
+      <span class="is-accent">Habilidades</span><span class="dot">·</span>
+      <span>Mobilidade</span><span class="dot">·</span>
+      <span>Progressão</span><span class="dot">·</span>
+      <span class="is-accent">Handstand</span><span class="dot">·</span>
+      <span>Front Lever</span><span class="dot">·</span>
+      <span>Planche</span><span class="dot">·</span>
+      <span class="is-accent">Muscle-up</span><span class="dot">·</span>
+      <span>Pistola</span><span class="dot">·</span>
+      <span>Dragon Flag</span><span class="dot">·</span>
+    </div>
+
+  </div>
+</div>
+        <section id="agendaPessoal" class="card agenda-pessoal">
+          <header class="agenda-pessoal-cabecalho">
+            <div>
+              <p class="sessao-sobretitulo">Sua rotina</p>
+              <h2>Plano de treino</h2>
+              <p class="desc">Veja os treinos programados para cada dia da semana e inicie sua sessão.</p>
+            </div>
+            <a class="btn" href="Exercicios.html">Editar agenda</a>
+          </header>
+          <div id="listaAgendaPessoal" class="lista-agenda-pessoal"></div>
+        </section>
+
+        <section id="progressoPessoal" class="card progresso-pessoal">
+          <header class="agenda-pessoal-cabecalho">
+            <div>
+              <p class="sessao-sobretitulo">Seu progresso</p>
+              <h2>Histórico de treinos</h2>
+              <p class="desc">Acompanhe suas sessões e os grupos musculares trabalhados.</p>
+            </div>
+          </header>
+          <div class="progresso-pessoal-grade">
+            <section aria-labelledby="tituloHistorico">
+              <h3 id="tituloHistorico" class="sub">Sessões finalizadas</h3>
+              <div id="historicoTreinos" class="historico-treinos"></div>
+            </section>
+            <section aria-labelledby="tituloGrupos">
+              <h3 id="tituloGrupos" class="sub">Grupos trabalhados</h3>
+              <div id="graficoGrupos"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="sessaoTreino" class="card sessao-treino" hidden>
+          <header class="sessao-cabecalho">
+            <div>
+              <p class="sessao-sobretitulo">Treinar agora</p>
+              <h2 id="sessaoNome">Seu treino</h2>
+            </div>
+            <span id="sessaoNivel" class="tag-nivel">Nível</span>
+          </header>
+
+          <div id="sessaoAndamento">
+            <p id="sessaoDescricao" class="desc"></p>
+
+            <div class="sessao-metricas">
+              <div class="sessao-metrica">
+                <span>Tempo de treino</span>
+                <strong id="sessaoTempo">00:00</strong>
+              </div>
+              <div class="sessao-metrica">
+                <span>Exercícios concluídos</span>
+                <strong id="sessaoContagem">0 / 0</strong>
+              </div>
+            </div>
+
+            <div class="sessao-progresso" role="progressbar" aria-label="Progresso do treino" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span id="sessaoBarra"></span>
+            </div>
+            <div id="listaSessao" class="lista-sessao"></div>
+
+            <div class="acoes-sessao">
+              <a class="btn" href="Exercicios.html">Voltar aos treinos</a>
+              <button class="btn primary" data-acao="finalizar-sessao">Finalizar treino</button>
+            </div>
+          </div>
+
+          <div id="resumoTreino" class="resumo-treino" hidden>
+            <div class="resumo-titulo">
+              <span class="resumo-icone" aria-hidden="true">✓</span>
+              <div>
+                <h3>Treino finalizado!</h3>
+                <p>Confira como foi sua sessão.</p>
+              </div>
+            </div>
+            <div class="resumo-metricas">
+              <div class="sessao-metrica">
+                <span>Duração</span>
+                <strong id="resumoDuracao">00:00</strong>
+              </div>
+              <div class="sessao-metrica">
+                <span>Exercícios concluídos</span>
+                <strong id="resumoConcluidos">0 / 0</strong>
+              </div>
+              <div class="sessao-metrica">
+                <span>Progresso</span>
+                <strong id="resumoProgresso">0%</strong>
+              </div>
+            </div>
+            <h3 class="sub">Resultado por exercício</h3>
+            <ul id="resumoExercicios" class="resumo-exercicios"></ul>
+            <button class="btn primary" data-acao="voltar-agenda">Voltar à minha agenda</button>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© 2026 Next Level — Seja seu melhor.</span>
+          <span>Treino guiado ou personalizado, no seu ritmo.</span>
+        </footer>
+      </main>
+      <script src="exercises.js"></script>
+    </body>
+  </html>

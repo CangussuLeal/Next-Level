@@ -1191,3 +1191,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   goTo(document.getElementById("view-builder") ? "builder" : "home");
 });
+
+/* ---------- Hero · glow que segue o cursor ---------- */
+(function(){
+  const hero = document.querySelector('.nl-hero');
+  if (!hero) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return; // mobile: skip
+
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top) / r.height) * 100;
+    hero.style.setProperty('--mx', x + '%');
+    hero.style.setProperty('--my', y + '%');
+  });
+})();

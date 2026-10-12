@@ -1207,3 +1207,5 @@ document.addEventListener("DOMContentLoaded", () => {
     hero.style.setProperty('--my', y + '%');
   });
 })();
+
+

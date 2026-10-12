@@ -1284,3 +1284,244 @@ document.addEventListener('DOMContentLoaded', () => {
   atualizarModalMeusTreinos();
   DIAS.forEach(d => atualizarSlot(d));
 });
+/* ============================================================
+   SELETOR VISUAL DE EXERCÍCIOS — Filtros grupo + nível + busca
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  const select       = document.getElementById('criarAddSelect');
+  const btnAdd       = document.getElementById('btnAddEx');
+  const resultado    = document.getElementById('seletorResultado');
+  const info         = document.getElementById('seletorInfo');
+  const busca        = document.getElementById('buscaExercicio');
+  const filtrosGrupo = Array.from(document.querySelectorAll('#filtroGrupo .chip'));
+  const filtrosNivel = Array.from(document.querySelectorAll('#filtroNivelCriar .chip'));
+  const criarFoco    = document.getElementById('criarFoco');
+  const criarNivel   = document.getElementById('criarNivel');
+
+  if (!select || !btnAdd || !resultado) return;
+
+  /* ---------- 1. Constrói a lista de exercícios a partir do <select> ---------- */
+  const CAT_FROM_OPTGROUP = {
+    'Push · Flexões': 'Push',
+    'Push · Fondos': 'Push',
+    'Pull · Dominadas': 'Pull',
+    'Pull · Muscle-up': 'Pull',
+    'Pernas': 'Pernas',
+    'Abdômen / Core': 'Abdômen',
+    'Habilidades · Levers e Flags': 'Habilidades',
+    'Habilidades · Pino': 'Habilidades',
+    'Habilidades · Planche': 'Habilidades'
+  };
+
+  const opcoes = Array.from(select.querySelectorAll('option')).map(opt => {
+    const nome = opt.value;
+    if (!nome) return null;
+
+    const infoEx = (typeof EX !== 'undefined' && EX[nome]) || {};
+    const grupoOpt = opt.closest('optgroup');
+    const grupoLabel = grupoOpt ? grupoOpt.label : '';
+
+    // Nível: tenta EX.n, senão o prefixo "N2 · ..."
+    const matchNivel = opt.textContent.match(/N(\d)/);
+    const nivel = infoEx.n || (matchNivel ? parseInt(matchNivel[1], 10) : 0);
+
+    // Categoria: EX.cat tem prioridade; senão, infere pelo optgroup
+    const cat = infoEx.cat || CAT_FROM_OPTGROUP[grupoLabel] || 'Outros';
+
+    // Nome limpo (sem o prefixo "N2 · ")
+    const label = opt.textContent.replace(/^N\d\s*·\s*/, '').trim();
+
+    return { value: nome, label, nivel, cat };
+  }).filter(Boolean);
+
+  /* ---------- 2. Estado dos filtros ---------- */
+  let filtroGrupo = 'todos';   // todos | Push | Pull | Pernas | Abdômen | Habilidades | superiores
+  let filtroNivel = 'todos';   // todos | '1' .. '5'
+  let filtroBusca = '';
+
+  /* ---------- 3. Mapeia o dropdown "Foco principal" → chip de grupo ---------- */
+  const FOCO_PARA_GRUPO = {
+    push:        'Push',
+    pull:        'Pull',
+    pernas:      'Pernas',
+    abdomen:     'Abdômen',
+    habilidades: 'Habilidades',
+    superiores:  'superiores',
+    full:        'todos'
+  };
+
+  const CAT_SLUG = {
+    'Push': 'push',
+    'Pull': 'pull',
+    'Pernas': 'pernas',
+    'Abdômen': 'abdomen',
+    'Habilidades': 'skills'
+  };
+
+  /* ---------- 4. Renderização ---------- */
+  function render() {
+    const filtrados = opcoes.filter(ex => {
+      // Grupo
+      if (filtroGrupo === 'superiores') {
+        if (ex.cat !== 'Push' && ex.cat !== 'Pull') return false;
+      } else if (filtroGrupo !== 'todos' && ex.cat !== filtroGrupo) {
+        return false;
+      }
+      // Nível
+      if (filtroNivel !== 'todos' && String(ex.nivel) !== String(filtroNivel)) {
+        return false;
+      }
+      // Busca
+      if (filtroBusca) {
+        if (!ex.label.toLowerCase().includes(filtroBusca)) return false;
+      }
+      return true;
+    });
+
+    // Info
+    const partes = [`${filtrados.length} exercício${filtrados.length !== 1 ? 's' : ''}`];
+    if (filtroGrupo !== 'todos') partes.push(`Grupo: <strong>${filtroGrupo}</strong>`);
+    if (filtroNivel !== 'todos') partes.push(`Nível: <strong>N${filtroNivel}</strong>`);
+    if (filtroBusca) partes.push(`Busca: <strong>“${filtroBusca}”</strong>`);
+    info.innerHTML = partes.join(' · ');
+
+    // Vazio
+    if (!filtrados.length) {
+      resultado.innerHTML =
+        '<p class="vazio" style="grid-column: 1/-1; padding: 2rem 0; text-align:center;">Nenhum exercício com estes filtros. Tenta outra combinação.</p>';
+      return;
+    }
+
+    // Cartões
+    resultado.innerHTML = filtrados.map(ex => {
+      const slug = CAT_SLUG[ex.cat] || 'outros';
+      return `
+        <button type="button"
+                class="ex-card"
+                data-ex="${ex.value.replace(/"/g, '&quot;')}"
+                role="listitem"
+                title="Adicionar “${ex.label}” ao treino">
+          <span class="ex-card__cat ex-card__cat--${slug}">${ex.cat}</span>
+          <strong class="ex-card__nome">${ex.label}</strong>
+          <span class="ex-card__nivel">N${ex.nivel}</span>
+          <span class="ex-card__add" aria-hidden="true">+</span>
+        </button>
+      `;
+    }).join('');
+  }
+
+  /* ---------- 5. Sincroniza chips a partir dos dropdowns ---------- */
+  function setChipGrupo(grupo) {
+    filtroGrupo = grupo;
+    filtrosGrupo.forEach(c => {
+      c.classList.toggle('is-active', c.dataset.grupo === grupo);
+    });
+  }
+
+  function setChipNivel(nivel) {
+    filtroNivel = String(nivel);
+    filtrosNivel.forEach(c => {
+      c.classList.toggle('is-active', c.dataset.nivel === String(nivel));
+    });
+  }
+
+  if (criarFoco) {
+    criarFoco.addEventListener('change', () => {
+      const novo = FOCO_PARA_GRUPO[criarFoco.value] || 'todos';
+      setChipGrupo(novo);
+      render();
+    });
+  }
+
+  if (criarNivel) {
+    criarNivel.addEventListener('change', () => {
+      setChipNivel(criarNivel.value);
+      render();
+    });
+  }
+
+  /* ---------- 6. Interação com os chips ---------- */
+  filtrosGrupo.forEach(chip => {
+    chip.addEventListener('click', () => {
+      setChipGrupo(chip.dataset.grupo);
+      render();
+    });
+  });
+
+  filtrosNivel.forEach(chip => {
+    chip.addEventListener('click', () => {
+      setChipNivel(chip.dataset.nivel);
+      render();
+    });
+  });
+
+  /* ---------- 7. Busca ---------- */
+  if (busca) {
+    busca.addEventListener('input', () => {
+      filtroBusca = busca.value.trim().toLowerCase();
+      render();
+    });
+  }
+
+  /* ---------- 8. Clique no cartão → adiciona via select escondido ---------- */
+  resultado.addEventListener('click', (e) => {
+    const card = e.target.closest('.ex-card');
+    if (!card) return;
+
+    // Feedback visual
+    card.classList.add('added');
+    setTimeout(() => card.classList.remove('added'), 550);
+
+    // Seta o valor e dispara o handler original do exercises.js
+    select.value = card.dataset.ex;
+    btnAdd.click();
+  });
+
+  /* ---------- 9. Estado inicial — respeita os dropdowns ---------- */
+  if (criarFoco) {
+    const grupoInicial = FOCO_PARA_GRUPO[criarFoco.value] || 'todos';
+    setChipGrupo(grupoInicial);
+  }
+  if (criarNivel) {
+    setChipNivel(criarNivel.value);
+  }
+  render();
+
+});
+/* ---------- Bottom sheet · arrastar para fechar no mobile ---------- */
+(function(){
+  if (window.matchMedia('(min-width: 641px)').matches) return;
+
+  document.querySelectorAll('.modal').forEach(modal => {
+    const box = modal.querySelector('.modal-box');
+    if (!box) return;
+
+    let startY = 0, currentY = 0, dragging = false;
+
+    box.addEventListener('touchstart', e => {
+      if (box.scrollTop > 0) return;             // só se estiver no topo
+      startY = e.touches[0].clientY;
+      dragging = true;
+      box.style.transition = 'none';
+    }, { passive: true });
+
+    box.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      currentY = e.touches[0].clientY - startY;
+      if (currentY < 0) currentY = 0;            // só para baixo
+      box.style.transform = `translateY(${currentY}px)`;
+    }, { passive: true });
+
+    box.addEventListener('touchend', () => {
+      if (!dragging) return;
+      dragging = false;
+      box.style.transition = '';
+      if (currentY > 100) {
+        modal.style.display = 'none';
+      }
+      box.style.transform = '';
+      currentY = 0;
+    });
+  });
+})();

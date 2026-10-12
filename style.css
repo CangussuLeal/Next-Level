@@ -1487,3 +1487,1023 @@ h3{ font-size: clamp(1.05rem, 1.8vw, 1.3rem); }
   .nl-hero__scroll,
   .nl-hero__kicker{ opacity: 1; }
 }
+/* ============================================================
+   SELETOR VISUAL DE EXERCÍCIOS
+   ============================================================ */
+
+.seletor-exercicios{
+  margin: 1.5rem 0 2.5rem;
+  padding: 1.5rem;
+  background: var(--grey-800);
+  border: 1px solid var(--line-soft);
+}
+
+/* ---------- FILTROS ---------- */
+.seletor-filtros{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.filtros-linha{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 1rem;
+}
+
+.filtros-label{
+  flex: 0 0 110px;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+
+.chip-group{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+
+.chip{
+  padding: .45rem .9rem;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--grey-400);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color .25s ease, border-color .25s ease, background .25s ease;
+}
+.chip:hover{
+  color: var(--white);
+  border-color: var(--line-hard);
+}
+.chip.is-active{
+  color: var(--black);
+  background: var(--white);
+  border-color: var(--white);
+}
+
+.busca-exercicio{
+  flex: 1 1 240px;
+  min-width: 0;
+  padding: .55rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line-hard);
+  color: var(--white);
+  font-size: .9rem;
+  outline: none;
+  transition: border-color .3s ease;
+}
+.busca-exercicio::placeholder{ color: #555; }
+.busca-exercicio:focus{ border-bottom-color: var(--white); }
+
+/* ---------- INFO ---------- */
+.seletor-info{
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  margin: 0 0 1rem;
+}
+.seletor-info strong{
+  color: var(--white);
+  font-weight: 500;
+}
+
+/* ---------- GRELHA DE RESULTADOS ---------- */
+.seletor-resultado{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .5rem;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: .35rem;
+}
+
+.seletor-resultado::-webkit-scrollbar{ width: 6px; }
+.seletor-resultado::-webkit-scrollbar-thumb{ background: #222; }
+.seletor-resultado::-webkit-scrollbar-thumb:hover{ background: #333; }
+
+/* ---------- CARTÃO DE EXERCÍCIO ---------- */
+.ex-card{
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: .85rem;
+  width: 100%;
+  padding: .85rem 1rem;
+  text-align: left;
+  background: var(--black);
+  border: 1px solid var(--line-soft);
+  color: var(--white);
+  cursor: pointer;
+  transition: background .25s ease, border-color .25s ease, transform .25s ease;
+}
+.ex-card:hover{
+  background: var(--grey-700);
+  border-color: var(--line-hard);
+}
+.ex-card:active{ transform: scale(.995); }
+
+/* Categoria (tag colorida à esquerda) */
+.ex-card__cat{
+  display: inline-block;
+  padding: .22rem .55rem;
+  font-size: .55rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--grey-400);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.ex-card__cat--push    { color: #8fc9ff; border-color: rgba(143,201,255,.35); }
+.ex-card__cat--pull    { color: #c9a4ff; border-color: rgba(201,164,255,.35); }
+.ex-card__cat--pernas  { color: #ffb28f; border-color: rgba(255,178,143,.35); }
+.ex-card__cat--abdomen { color: #ffd580; border-color: rgba(255,213,128,.35); }
+.ex-card__cat--skills  { color: #9cffd5; border-color: rgba(156,255,213,.35); }
+.ex-card__cat--outros  { color: var(--grey-400); }
+
+/* Nome do exercício */
+.ex-card__nome{
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: .78rem;
+  letter-spacing: -.005em;
+  line-height: 1.15;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Nível */
+.ex-card__nivel{
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .82rem;
+  color: var(--grey-500);
+  white-space: nowrap;
+}
+
+/* Botão [+] que aparece no hover */
+.ex-card__add{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--line-hard);
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--grey-400);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .25s ease, transform .25s ease, background .25s ease, color .25s ease;
+}
+.ex-card:hover .ex-card__add{
+  opacity: 1;
+  transform: translateX(0);
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+
+/* Feedback ao adicionar */
+.ex-card.added{
+  background: var(--grey-700);
+  border-color: #9cffd5;
+}
+.ex-card.added .ex-card__add{
+  background: #9cffd5;
+  color: var(--black);
+  border-color: #9cffd5;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---------- ESCONDER ORIGINAIS MAS MANTER FUNCIONAIS ---------- */
+.seletor-hidden{
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+  pointer-events: none;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (min-width: 700px){
+  .seletor-resultado{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1100px){
+  .seletor-resultado{ grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 520px){
+  .filtros-label{ flex-basis: 100%; margin-bottom: -.25rem; }
+  .ex-card{ grid-template-columns: auto 1fr auto; }
+  .ex-card__add{ display: none; }
+}
+/* ============================================================
+   MOBILE OVERHAUL — Responsividade refinada
+   Colar no FIM do style.css (sobrepõe o que vem antes)
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   0. Base global mobile-safe
+   ------------------------------------------------------------ */
+html{
+  /* Evita zoom involuntário em inputs no iOS */
+  font-size: 100%;
+}
+
+body{
+  /* Respeita notch e barras do sistema */
+  padding-left:  env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  /* Evita "bounce" horizontal */
+  overscroll-behavior-x: none;
+}
+
+/* Impede qualquer filho de causar scroll horizontal */
+.wrap, .container, .card, section, article, header, footer{
+  max-width: 100%;
+}
+
+/* Todos os inputs ≥ 16px → iOS não dá zoom ao focar */
+input, select, textarea{
+  font-size: 16px !important;
+  line-height: 1.4;
+}
+
+/* Botões/chips sempre tocáveis */
+button, .btn, .chip, .filtro, .btn-ico{
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Feedback tátil (não em desktop) */
+@media (hover: none){
+  .btn:active,
+  .chip:active,
+  .filtro:active,
+  .btn-ico:active,
+  .opcao:active,
+  .treino-pronto:active,
+  .ex-card:active,
+  .item-treino:active{
+    transform: scale(.98);
+    transition: transform .1s ease;
+  }
+}
+
+/* ------------------------------------------------------------
+   1. HEADER no mobile
+   ------------------------------------------------------------ */
+@media (max-width: 780px){
+
+  .menu{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .75rem;
+    padding: .9rem 1.25rem;
+    text-align: center;
+  }
+
+  /* Quebra o padding negativo do .wrap em mobile */
+  .wrap > .menu{
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .menu h1{
+    flex: 1 1 100%;
+    text-align: center;
+    font-size: .9rem;
+    letter-spacing: .04em;
+    white-space: normal;
+  }
+
+  .menu nav{
+    flex: 1 1 100%;
+  }
+
+  .menu nav ul{
+    justify-content: center;
+    gap: .5rem .25rem;
+    flex-wrap: wrap;
+  }
+
+  .menu nav a{
+    padding: .55rem .8rem;
+    font-size: .62rem;
+    letter-spacing: .18em;
+    border: 1px solid transparent;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .menu nav a::after{ display: none; }
+
+  .menu nav a[aria-current="page"]{
+    border-color: var(--line-hard);
+    background: rgba(255,255,255,.04);
+  }
+}
+
+/* ------------------------------------------------------------
+   2. HERO no mobile
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+
+  .nl-hero{
+    min-height: auto;
+    padding: 5rem 1.25rem 3rem;
+  }
+
+  .nl-hero__title{
+    font-size: clamp(2.4rem, 14vw, 4.5rem);
+    line-height: .88;
+  }
+
+  .nl-hero__row{ gap: .1em; }
+
+  .nl-hero__row--2{
+    margin-left: 0;
+  }
+
+  .nl-hero__kicker{
+    font-size: .62rem;
+    letter-spacing: .22em;
+    flex-wrap: wrap;
+  }
+  .nl-hero__line{ width: 32px; }
+
+  .nl-hero__lede{
+    font-size: .98rem;
+    line-height: 1.55;
+    margin-top: 1.5rem;
+  }
+
+  .nl-hero__stats{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 1.25rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+  }
+
+  .nl-hero__stats b{ font-size: 1.35rem; }
+  .nl-hero__stats span{ font-size: .58rem; letter-spacing: .2em; }
+
+  .nl-hero__scroll{
+    right: 1rem;
+    bottom: 1rem;
+    font-size: .55rem;
+  }
+  .nl-hero__scroll i{ height: 26px; }
+}
+
+/* ------------------------------------------------------------
+   3. TICKER no mobile
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .ticker{ padding: .7rem 0; }
+
+  .wrap > .ticker{
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+  }
+
+  .ticker__group{
+    gap: 1.4rem;
+    padding-right: 1.4rem;
+  }
+
+  .ticker__group span{
+    font-size: .62rem;
+    letter-spacing: .18em;
+  }
+
+  .ticker__group .dot{ font-size: .95rem; }
+
+  .ticker__track{
+    animation-duration: 28s; /* mais rápido para caber mais */
+  }
+}
+
+/* ------------------------------------------------------------
+   4. WRAP + secções
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .wrap{
+    padding: 1.25rem 1.25rem 2.5rem;
+  }
+
+  .wrap > .card:first-of-type{ margin-top: 0; }
+  .card{
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+  }
+
+  .card > h2{ font-size: 1.35rem; }
+  .card > h2 .num{ font-size: .75rem; }
+
+  .desc{ font-size: .9rem; }
+  .sub{ margin: 1.5rem 0 .75rem; font-size: .85rem; }
+}
+
+/* ------------------------------------------------------------
+   5. PASSO 1 — Escolha de modo
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .grid-2{
+    gap: .6rem;
+    margin-top: 1rem;
+  }
+
+  .opcao{
+    padding: 1.25rem 1.1rem;
+    gap: .5rem;
+  }
+
+  .opcao strong{ font-size: 1.05rem; }
+  .opcao small{ font-size: .78rem; }
+  .opcao .ico{ font-size: 1.3rem; margin-bottom: .25rem; }
+}
+
+/* ------------------------------------------------------------
+   6. FILTROS de nível
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .filtro-niveis{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .35rem;
+    margin: 1rem 0;
+  }
+
+  .filtro{
+    padding: .55rem .35rem;
+    font-size: .6rem;
+    letter-spacing: .12em;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .filtro.sel{ border-color: var(--white); }
+}
+
+/* ------------------------------------------------------------
+   7. TREINOS PRONTOS
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .lista-prontos{ gap: .65rem; }
+
+  .treino-pronto{
+    padding: 1.1rem;
+    gap: .75rem;
+  }
+
+  .tp-head{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+  }
+
+  .tp-head h3{ font-size: 1.05rem; }
+
+  .tag-nivel{
+    font-size: .55rem;
+    padding: .28rem .55rem;
+  }
+
+  .tp-desc{ font-size: .9rem; }
+  .tp-info{ font-size: .68rem; }
+
+  .tp-exercicios{
+    gap: .25rem .6rem;
+  }
+  .tp-exercicios li{ font-size: .75rem; }
+
+  .tp-acoes{ gap: .5rem; }
+  .treino-pronto .btn{ width: 100%; }
+}
+
+/* ------------------------------------------------------------
+   8. FORMULÁRIO — criar treino
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .form-treino{
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+
+  .campo input,
+  .campo select{
+    padding: .85rem 0;
+  }
+
+  .campo select{
+    padding-right: 2rem;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--grey-500) 50%),
+      linear-gradient(135deg, var(--grey-500) 50%, transparent 50%);
+    background-position: calc(100% - 14px) center, calc(100% - 9px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+  }
+}
+
+/* ------------------------------------------------------------
+   9. CARTÃO de exercício (.ex) já adicionado
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .ex{
+    padding: 1rem 1rem 1.25rem;
+  }
+
+  .ex-top{ gap: .35rem; margin-bottom: .6rem; }
+
+  .ex-nome{ font-size: .85rem; }
+
+  .tag{ font-size: .55rem; padding: .2rem .45rem; }
+
+  .ex-exec{ font-size: .78rem; }
+  .ex-det{ font-size: .75rem; }
+
+  .ex-campos{
+    grid-template-columns: 1fr 1fr;
+    gap: .6rem;
+    padding-top: .85rem;
+  }
+
+  .ex-campos label{ font-size: .58rem; letter-spacing: .15em; }
+  .ex-campos input{ padding: .65rem 0; }
+}
+
+/* ------------------------------------------------------------
+   10. SELETOR VISUAL de exercícios
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+
+  .seletor-exercicios{
+    padding: 1rem;
+    margin: 1.25rem 0 1.75rem;
+  }
+
+  .seletor-filtros{
+    gap: .85rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .filtros-linha{
+    gap: .5rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtros-label{
+    flex: 0 0 auto;
+    font-size: .58rem;
+    letter-spacing: .2em;
+    margin-bottom: -.15rem;
+  }
+
+  .chip-group{
+    gap: .3rem;
+    /* Scroll horizontal se não couberem */
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: .25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .chip-group::-webkit-scrollbar{ display: none; }
+
+  .chip{
+    flex: 0 0 auto;
+    padding: .55rem .85rem;
+    font-size: .62rem;
+    letter-spacing: .12em;
+  }
+
+  .busca-exercicio{
+    flex: 1 1 auto;
+    padding: .75rem 0;
+    font-size: 16px;
+  }
+
+  .seletor-info{
+    font-size: .62rem;
+    letter-spacing: .14em;
+    margin-bottom: .75rem;
+  }
+
+  .seletor-resultado{
+    grid-template-columns: 1fr;
+    gap: .4rem;
+    max-height: 55vh;
+    overflow-y: auto;
+    padding-right: .25rem;
+    /* Scroll suave */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ex-card{
+    grid-template-columns: auto 1fr auto;
+    padding: .85rem .9rem;
+    gap: .6rem;
+    min-height: 56px;
+  }
+
+  .ex-card__cat{
+    font-size: .5rem;
+    padding: .18rem .45rem;
+    letter-spacing: .16em;
+  }
+
+  .ex-card__nome{
+    font-size: .74rem;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.2;
+  }
+
+  .ex-card__nivel{ font-size: .72rem; }
+
+  /* Mostra o [+] sempre no mobile (não há hover) */
+  .ex-card__add{
+    display: inline-flex;
+    opacity: 1;
+    transform: none;
+    width: 30px;
+    height: 30px;
+    border-color: var(--line-hard);
+  }
+
+  .ex-card.added .ex-card__add{ background: #9cffd5; color: var(--black); border-color: #9cffd5; }
+}
+
+/* ------------------------------------------------------------
+   11. LISTA "MEUS TREINOS"
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .lista-meus-treinos{ gap: .6rem; }
+
+  .meu-treino{
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+    gap: .6rem;
+  }
+
+  .meu-treino b{ font-size: .9rem; }
+  .meu-treino span{ font-size: .72rem; }
+
+  .meu-treino .btn{
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .meu-treino .btn-ico{
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
+  }
+
+  .meu-treino{ position: relative; }
+  .meu-treino b{ padding-right: 2.5rem; }
+}
+
+/* ------------------------------------------------------------
+   12. AGENDA — semanal + mensal
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+
+  .agenda-top{
+    gap: .75rem;
+    align-items: stretch;
+  }
+
+  .agenda-top .campo{
+    flex: 1 1 calc(50% - .5rem);
+    min-width: 0;
+  }
+
+  .vista-toggle{
+    flex: 1 1 100%;
+    margin-left: 0;
+    gap: .35rem;
+  }
+  .vista-toggle .btn{ flex: 1; }
+
+  /* Grade semanal: 1 coluna, mas dias compactos */
+  .grade-semanal{
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+
+  .dia-agenda{
+    padding: .85rem .9rem;
+  }
+
+  .dia-agenda-head b{ font-size: .8rem; }
+
+  .dia-agenda-head .btn-ico{
+    width: 36px;
+    height: 36px;
+  }
+
+  .slot-treino{
+    padding: .6rem .75rem;
+    font-size: .78rem;
+  }
+  .slot-treino.treinado{ font-size: .85rem; }
+
+  /* Calendário mensal */
+  .cal-semana span{
+    font-size: .55rem;
+    letter-spacing: .1em;
+    padding: .35rem .15rem;
+  }
+
+  .cal-dias{ gap: .2rem; }
+
+  .cal-dia{
+    min-height: 52px;
+    padding: .35rem;
+    font-size: .7rem;
+  }
+
+  .cal-num{
+    font-size: .7rem;
+    margin-bottom: .15rem;
+  }
+
+  .cal-treino{
+    font-size: .5rem;
+    line-height: 1.2;
+    letter-spacing: .02em;
+    /* Trunca a 2 linhas */
+    line-clamp: 2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .acoes-agenda{
+    flex-direction: column;
+    gap: .5rem;
+  }
+  .acoes-agenda .btn{ width: 100%; }
+}
+
+/* ------------------------------------------------------------
+   13. MODAIS — estilo "bottom sheet" no mobile
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+
+  .modal{
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-box{
+    width: 100%;
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    padding: 1.25rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
+    /* Animação de entrada por baixo */
+    animation: sheetUp .35s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  @keyframes sheetUp{
+    from{ transform: translateY(30px); opacity: 0; }
+    to  { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-head h3{ font-size: 1.1rem; }
+
+  .modal-lista{
+    gap: .3rem;
+    margin-top: 1rem;
+  }
+
+  .item-treino{
+    padding: .85rem .9rem;
+    min-height: 56px;
+  }
+  .item-treino b{ font-size: .8rem; }
+  .item-treino span{ font-size: .68rem; }
+
+  .dias-agendamento{
+    grid-template-columns: 1fr 1fr;
+    gap: .4rem;
+  }
+
+  .dia-agendamento{
+    padding: .75rem .65rem;
+  }
+  .dia-agendamento span{ font-size: .72rem; }
+  .dia-agendamento small{ font-size: .6rem; }
+}
+
+/* ------------------------------------------------------------
+   14. SESSÃO DE TREINO
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+
+  .sessao-cabecalho{
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .sessao-cabecalho h2{ font-size: 1.5rem; }
+
+  .sessao-metricas,
+  .resumo-metricas{
+    grid-template-columns: repeat(2, 1fr);
+    gap: .5rem;
+    margin: 1rem 0;
+  }
+
+  .sessao-metrica{
+    padding: .85rem .9rem;
+  }
+  .sessao-metrica span{ font-size: .55rem; letter-spacing: .16em; }
+  .sessao-metrica strong{ font-size: 1.15rem; }
+
+  .sessao-progresso{ margin: .75rem 0 1.25rem; }
+
+  .lista-sessao{ gap: .5rem; margin: 1.25rem 0; }
+
+  .sessao-exercicio{
+    padding: 1rem;
+    gap: .75rem;
+  }
+
+  .sessao-exercicio-info{ flex: 1 1 100%; }
+  .sessao-exercicio-info h3{ font-size: .92rem; }
+
+  .sessao-exercicio .btn{
+    width: 100%;
+  }
+
+  .acoes-sessao{
+    flex-direction: column;
+    gap: .5rem;
+  }
+  .acoes-sessao .btn{ width: 100%; }
+}
+
+/* ------------------------------------------------------------
+   15. AGENDA PESSOAL (Treinar.html)
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+
+  .agenda-pessoal-cabecalho{
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  .agenda-pessoal-cabecalho .btn{ width: 100%; }
+
+  .lista-agenda-pessoal{ gap: .5rem; }
+
+  .agenda-pessoal-dia{ padding: 1rem; gap: .6rem; }
+
+  .agenda-pessoal-dia-nome h3{ font-size: .88rem; }
+
+  .agenda-pessoal-info b{ font-size: .95rem; }
+  .agenda-pessoal-info span{ font-size: .68rem; }
+
+  .agenda-pessoal-dia .btn{ width: 100%; }
+
+  .progresso-pessoal-grade{ grid-template-columns: 1fr; gap: 1.5rem; }
+
+  .grafico-radar svg{ width: 100%; max-width: 280px; }
+  .radar-legenda{ min-width: 0; width: 100%; }
+}
+
+/* ------------------------------------------------------------
+   16. INDEX (HOME) — artigo
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+
+  .container{
+    padding: 2.5rem 1.25rem 3rem;
+  }
+
+  .container h2{
+    font-size: 1.85rem;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .container p{
+    font-size: .96rem;
+    line-height: 1.7;
+    margin-bottom: 1.1rem;
+  }
+
+  .container p:first-of-type{
+    font-size: 1.1rem;
+    line-height: 1.45;
+  }
+
+  .container .img{
+    margin: 1.5rem 0;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ------------------------------------------------------------
+   17. FOOTER
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .footer{
+    flex-direction: column;
+    gap: .75rem;
+    text-align: center;
+    padding: 1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom));
+    font-size: .6rem;
+  }
+
+  .footer span:last-child{ font-size: .78rem; }
+}
+
+/* ------------------------------------------------------------
+   18. AJUSTE FINO para ecrãs muito estreitos (< 380px)
+   ------------------------------------------------------------ */
+@media (max-width: 380px){
+  .nl-hero__title{ font-size: clamp(2rem, 13vw, 3.5rem); }
+  .nl-hero__stats{ grid-template-columns: 1fr 1fr; gap: .75rem; }
+  .nl-hero__stats b{ font-size: 1.15rem; }
+  .nl-hero__stats span{ font-size: .55rem; }
+
+  .filtro-niveis{ grid-template-columns: repeat(2, 1fr); }
+
+  .card > h2{ font-size: 1.2rem; }
+
+  .ex-card{ grid-template-columns: 1fr auto; gap: .5rem; }
+  .ex-card__cat{ display: none; }
+
+  .cal-dia{ min-height: 44px; }
+  .cal-treino{ display: none; }
+}
+
+/* ------------------------------------------------------------
+   19. ORIENTAÇÃO PAISAGEM no mobile
+   ------------------------------------------------------------ */
+@media (max-height: 500px) and (orientation: landscape){
+  .nl-hero{
+    min-height: auto;
+    padding: 3rem 1.25rem 2rem;
+  }
+  .nl-hero__title{ font-size: clamp(2rem, 10vw, 4rem); }
+  .nl-hero__stats{ margin-top: 1.25rem; padding-top: 1rem; }
+  .nl-hero__scroll{ display: none; }
+
+  .modal-box{ max-height: 96vh; }
+}
+
+/* ------------------------------------------------------------
+   20. Acessibilidade — reduzir motion
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce){
+  .modal-box{ animation: none; }
+  .ex-card:active,
+  .btn:active,
+  .chip:active{ transform: none; }
+}
